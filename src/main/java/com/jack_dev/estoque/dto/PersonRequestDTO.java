@@ -10,6 +10,7 @@ public class PersonRequestDTO {
 	private String firtName;
 	private String lastName;
 	private String password;
+	
 	public PersonRequestDTO() {
 	}
 	

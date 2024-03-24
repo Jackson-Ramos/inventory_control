@@ -5,7 +5,6 @@ import jakarta.persistence.*;
 
 import java.io.Serial;
 import java.io.Serializable;
-import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
@@ -26,25 +25,18 @@ public class Address implements Serializable {
 	private Long code;
 	@Column(name = "amount")
 	private Long amount;
-	
 	@Column(name = "stock")
 	private Integer stock;
-	
 	@Column(name = "deposit")
 	private Integer deposit;
-	
 	@Column(name = "read")
 	private Integer read;
-	
 	@Column(name = "building")
 	private Integer building;
-	
 	@Column(name = "level")
 	private Integer level;
-	
 	@Column(name = "apartment")
 	private Integer apartment;
-	
 	@ManyToMany(mappedBy = "addresses", fetch = FetchType.EAGER)
 	@JsonIgnoreProperties("address")
 	private Set<Product> products;

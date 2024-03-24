@@ -17,6 +17,7 @@ public class ProductRequestDTO implements Serializable {
 	private String name;
 	private BigDecimal price;
 	private Set<AddressRequestDTO> addresses;
+	
 	public ProductRequestDTO() {
 	}
 	
