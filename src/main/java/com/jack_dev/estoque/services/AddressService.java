@@ -2,6 +2,7 @@ package com.jack_dev.estoque.services;
 
 import com.jack_dev.estoque.dto.AddressRequestDTO;
 import com.jack_dev.estoque.entities.Address;
+import com.jack_dev.estoque.exceptions.ResourceNotFound;
 import com.jack_dev.estoque.mapper.Mapper;
 import com.jack_dev.estoque.repositories.AddressRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class AddressService {
@@ -27,8 +29,14 @@ public class AddressService {
 		return ResponseEntity.status(HttpStatus.OK).body(addresses);
 	}
 	
+	//	GetById
+	public ResponseEntity<AddressRequestDTO> findById(UUID id) {
+		var entity = addressRepository.findById(id).orElseThrow(() -> new ResourceNotFound("The Id: " + id + "Not Found"));
+		return ResponseEntity.status(HttpStatus.OK).body(Mapper.parseObject(entity, AddressRequestDTO.class));
+	}
+	
 	//Post
-	public ResponseEntity<AddressRequestDTO> save(Address address){
+	public ResponseEntity<AddressRequestDTO> save(Address address) {
 		var entity = Mapper.parseObject(addressRepository.save(address), AddressRequestDTO.class);
 		return ResponseEntity.status(HttpStatus.CREATED).body(entity);
 	}
