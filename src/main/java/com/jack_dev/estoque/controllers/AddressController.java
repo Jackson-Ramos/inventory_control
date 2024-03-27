@@ -17,22 +17,21 @@ import java.util.UUID;
 public class AddressController {
 	
 	@Autowired
-	public final AddressService addressService;
+	private final AddressService addressService;
 	
 	public AddressController(AddressService addressService) {
 		this.addressService = addressService;
 	}
 	
 	@GetMapping(
-			produces = MediaType.APPLICATION_JSON_VALUE,
-			consumes = MediaType.APPLICATION_JSON_VALUE)
+			produces = MediaType.APPLICATION_JSON_VALUE
+	)
 	public ResponseEntity<List<AddressRequestDTO>> findAll() {
 		return addressService.getAllAddress();
 	}
 	
 	@GetMapping(value = "/{id}",
-			produces = MediaType.APPLICATION_JSON_VALUE,
-			consumes = MediaType.APPLICATION_JSON_VALUE
+			produces = MediaType.APPLICATION_JSON_VALUE
 	)
 	public ResponseEntity<AddressRequestDTO> findById(@PathParam(value = "id") UUID id) {
 		return addressService.getOneAddress(id);
@@ -55,8 +54,7 @@ public class AddressController {
 	}
 	
 	@DeleteMapping(value = "/{id}",
-			produces = MediaType.APPLICATION_JSON_VALUE,
-			consumes = MediaType.APPLICATION_JSON_VALUE
+			produces = MediaType.APPLICATION_JSON_VALUE
 	)
 	public ResponseEntity<AddressRequestDTO> delete(@PathParam(value = "id") UUID id) {
 		return addressService.deleteAddress(id);
