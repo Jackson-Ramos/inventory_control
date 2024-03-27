@@ -24,20 +24,36 @@ public class AddressService {
 	}
 	
 	//	GetAll
-	public ResponseEntity<List<AddressRequestDTO>> findAll() {
+	public ResponseEntity<List<AddressRequestDTO>> getAllAddress() {
 		var addresses = Mapper.parseListObjects(addressRepository.findAll(), AddressRequestDTO.class);
 		return ResponseEntity.status(HttpStatus.OK).body(addresses);
 	}
 	
 	//	GetById
-	public ResponseEntity<AddressRequestDTO> findById(UUID id) {
-		var entity = addressRepository.findById(id).orElseThrow(() -> new ResourceNotFound("The Id: " + id + "Not Found"));
+	public ResponseEntity<AddressRequestDTO> getOneAddress(UUID id) {
+		var entity = addressRepository.findById(id).orElseThrow(
+				() -> new ResourceNotFound("The Id: " + id + "Not Found"));
 		return ResponseEntity.status(HttpStatus.OK).body(Mapper.parseObject(entity, AddressRequestDTO.class));
 	}
 	
 	//Post
-	public ResponseEntity<AddressRequestDTO> save(Address address) {
+	public ResponseEntity<AddressRequestDTO> saveAddress(Address address) {
 		var entity = Mapper.parseObject(addressRepository.save(address), AddressRequestDTO.class);
 		return ResponseEntity.status(HttpStatus.CREATED).body(entity);
+	}
+	
+	// Put
+	public ResponseEntity<AddressRequestDTO> updateAddress(UUID id, Address address) {
+		var entity = addressRepository.findById(id).orElseThrow(
+				() -> new ResourceNotFound("The Id: " + id + "Not Found"));
+		return ResponseEntity.status(HttpStatus.OK)
+				.body(Mapper.parseObject(addressRepository.save(entity), AddressRequestDTO.class));
+	}
+	
+	public ResponseEntity<AddressRequestDTO> deleteAddress(UUID id){
+		var entity = addressRepository.findById(id).orElseThrow(
+				()-> new ResourceNotFound("The Id: " + id + "Not Found"));
+		addressRepository.delete(entity);
+		return ResponseEntity.status(HttpStatus.OK).body(Mapper.parseObject(entity, AddressRequestDTO.class));
 	}
 }
