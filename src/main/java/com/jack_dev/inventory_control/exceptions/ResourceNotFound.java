@@ -1,4 +1,4 @@
-package com.jack_dev.estoque.exceptions;
+package com.jack_dev.inventory_control.exceptions;
 
 public class ResourceNotFound extends RuntimeException{
 	

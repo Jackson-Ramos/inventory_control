@@ -1,7 +1,7 @@
-package com.jack_dev.estoque.exceptions.handler;
+package com.jack_dev.inventory_control.exceptions.handler;
 
-import com.jack_dev.estoque.dto.ExceptionResponse;
-import com.jack_dev.estoque.exceptions.ResourceNotFound;
+import com.jack_dev.inventory_control.dto.ExceptionResponse;
+import com.jack_dev.inventory_control.exceptions.ResourceNotFound;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;

@@ -1,9 +1,8 @@
-package com.jack_dev.estoque.controllers;
+package com.jack_dev.inventory_control.controllers;
 
-import com.jack_dev.estoque.dto.AddressRequestDTO;
-import com.jack_dev.estoque.entities.Address;
-import com.jack_dev.estoque.services.AddressService;
-import jakarta.websocket.server.PathParam;
+import com.jack_dev.inventory_control.dto.AddressRequestDTO;
+import com.jack_dev.inventory_control.entities.Address;
+import com.jack_dev.inventory_control.services.AddressService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;

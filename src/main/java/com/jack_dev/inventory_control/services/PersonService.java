@@ -1,10 +1,10 @@
-package com.jack_dev.estoque.services;
+package com.jack_dev.inventory_control.services;
 
-import com.jack_dev.estoque.dto.PersonRequestDTO;
-import com.jack_dev.estoque.entities.Person;
-import com.jack_dev.estoque.exceptions.ResourceNotFound;
-import com.jack_dev.estoque.mapper.Mapper;
-import com.jack_dev.estoque.repositories.PersonRepository;
+import com.jack_dev.inventory_control.dto.PersonRequestDTO;
+import com.jack_dev.inventory_control.entities.Person;
+import com.jack_dev.inventory_control.exceptions.ResourceNotFound;
+import com.jack_dev.inventory_control.mapper.Mapper;
+import com.jack_dev.inventory_control.repositories.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

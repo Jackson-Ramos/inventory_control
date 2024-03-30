@@ -1,8 +1,8 @@
-package com.jack_dev.estoque.controllers;
+package com.jack_dev.inventory_control.controllers;
 
-import com.jack_dev.estoque.dto.ProductRequestDTO;
-import com.jack_dev.estoque.entities.Product;
-import com.jack_dev.estoque.services.ProductService;
+import com.jack_dev.inventory_control.dto.ProductRequestDTO;
+import com.jack_dev.inventory_control.entities.Product;
+import com.jack_dev.inventory_control.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;

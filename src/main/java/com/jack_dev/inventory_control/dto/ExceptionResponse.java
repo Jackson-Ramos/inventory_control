@@ -1,4 +1,4 @@
-package com.jack_dev.estoque.dto;
+package com.jack_dev.inventory_control.dto;
 
 import java.io.Serializable;
 import java.util.Date;

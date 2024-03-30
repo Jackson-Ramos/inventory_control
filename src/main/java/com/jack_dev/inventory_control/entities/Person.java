@@ -1,20 +1,31 @@
-package com.jack_dev.estoque.dto;
+package com.jack_dev.inventory_control.entities;
+
+import jakarta.persistence.*;
 
 import java.util.Objects;
 import java.util.UUID;
 
-public class PersonRequestDTO {
+@Entity
+@Table(name = "tb_person")
+public class Person {
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.UUID)
+	@Column(name = "person_id")
 	private UUID id;
+	@Column(name = "code")
 	private Integer code;
+	@Column(name = "firt_name")
 	private String firtName;
+	@Column(name = "last_name")
 	private String lastName;
+	@Column(name = "password")
 	private String password;
 	
-	public PersonRequestDTO() {
+	public Person() {
 	}
 	
-	public PersonRequestDTO(UUID id, Integer code, String firtName, String lastName, String password) {
+	public Person(UUID id, Integer code, String firtName, String lastName, String password) {
 		this.id = id;
 		this.code = code;
 		this.firtName = firtName;
@@ -66,7 +77,7 @@ public class PersonRequestDTO {
 	public boolean equals(Object o) {
 		if (this == o) return true;
 		if (o == null || getClass() != o.getClass()) return false;
-		PersonRequestDTO person = (PersonRequestDTO) o;
+		Person person = (Person) o;
 		return Objects.equals(id, person.id)
 				&& Objects.equals(code, person.code)
 				&& Objects.equals(firtName, person.firtName)

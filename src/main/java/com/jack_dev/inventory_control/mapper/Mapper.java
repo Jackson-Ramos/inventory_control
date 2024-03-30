@@ -1,4 +1,4 @@
-package com.jack_dev.estoque.mapper;
+package com.jack_dev.inventory_control.mapper;
 
 import org.modelmapper.ModelMapper;
 

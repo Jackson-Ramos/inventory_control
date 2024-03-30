@@ -1,7 +1,4 @@
-package com.jack_dev.estoque.entities;
-
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import jakarta.persistence.*;
+package com.jack_dev.inventory_control.dto;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -9,43 +6,27 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
 
-@Entity
-@Table(name = "tb_Address")
-public class Address implements Serializable {
+public class AddressRequestDTO implements Serializable {
 	
 	@Serial
 	private static final long serialVersionUID = 1L;
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.UUID)
-	@Column(name = "adress_id")
 	private UUID id;
-	
-	@Column(name = "address_code", unique = true, nullable = false)
 	private Long code;
-	@Column(name = "amount")
 	private Long amount;
-	@Column(name = "stock")
 	private Integer stock;
-	@Column(name = "deposit")
 	private Integer deposit;
-	@Column(name = "read")
 	private Integer read;
-	@Column(name = "building")
 	private Integer building;
-	@Column(name = "level")
 	private Integer level;
-	@Column(name = "apartment")
 	private Integer apartment;
-	@ManyToMany(mappedBy = "addresses", fetch = FetchType.EAGER)
-	@JsonIgnoreProperties("address")
-	private Set<Product> products;
+	private Set<ProductRequestDTO> products;
 	
-	public Address() {
+	public AddressRequestDTO() {
 	}
 	
-	public Address(UUID id, Long code, Long amount, Integer stock, Integer deposit, Integer read,
-	               Integer building, Integer level, Integer apartment, Set<Product> products) {
+	public AddressRequestDTO(UUID id, Long code, Long amount, Integer stock, Integer deposit, Integer read,
+	                         Integer building, Integer level, Integer apartment, Set<ProductRequestDTO> products) {
 		this.id = id;
 		this.code = code;
 		this.amount = amount;
@@ -130,11 +111,11 @@ public class Address implements Serializable {
 		this.apartment = apartment;
 	}
 	
-	public Set<Product> getProducts() {
+	public Set<ProductRequestDTO> getProducts() {
 		return products;
 	}
 	
-	public void setProducts(Set<Product> products) {
+	public void setProducts(Set<ProductRequestDTO> products) {
 		this.products = products;
 	}
 	
@@ -142,7 +123,7 @@ public class Address implements Serializable {
 	public boolean equals(Object o) {
 		if (this == o) return true;
 		if (o == null || getClass() != o.getClass()) return false;
-		Address address = (Address) o;
+		AddressRequestDTO address = (AddressRequestDTO) o;
 		return Objects.equals(id, address.id)
 				&& Objects.equals(code, address.code)
 				&& Objects.equals(amount, address.amount)

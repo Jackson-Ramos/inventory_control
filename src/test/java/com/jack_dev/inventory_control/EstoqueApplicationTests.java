@@ -1,4 +1,4 @@
-package com.jack_dev.estoque;
+package com.jack_dev.inventory_control;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
