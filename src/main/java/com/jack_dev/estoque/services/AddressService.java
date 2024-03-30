@@ -23,36 +23,42 @@ public class AddressService {
 		this.addressRepository = addressRepository;
 	}
 	
-	//	GetAll
+	//	Get All Address
 	public ResponseEntity<List<AddressRequestDTO>> getAllAddress() {
-		var addresses = Mapper.parseListObjects(addressRepository.findAll(), AddressRequestDTO.class);
+		var addresses = Mapper.parseListObjects(
+				addressRepository.findAll(), AddressRequestDTO.class
+		);
 		return ResponseEntity.status(HttpStatus.OK).body(addresses);
 	}
 	
-	//	GetById
+	//	Get One Address
 	public ResponseEntity<AddressRequestDTO> getOneAddress(UUID id) {
 		var entity = addressRepository.findById(id).orElseThrow(
-				() -> new ResourceNotFound("The Id: " + id + "Not Found"));
+				() -> new ResourceNotFound("The Id: " + id + "Not Found")
+		);
 		return ResponseEntity.status(HttpStatus.OK).body(Mapper.parseObject(entity, AddressRequestDTO.class));
 	}
 	
-	//Post
+	//Create New Address
 	public ResponseEntity<AddressRequestDTO> saveAddress(Address address) {
 		var entity = Mapper.parseObject(addressRepository.save(address), AddressRequestDTO.class);
 		return ResponseEntity.status(HttpStatus.CREATED).body(entity);
 	}
 	
-	// Put
+	// Update a Address
 	public ResponseEntity<AddressRequestDTO> updateAddress(UUID id, Address address) {
 		var entity = addressRepository.findById(id).orElseThrow(
-				() -> new ResourceNotFound("The Id: " + id + "Not Found"));
-		return ResponseEntity.status(HttpStatus.OK)
-				.body(Mapper.parseObject(addressRepository.save(entity), AddressRequestDTO.class));
+				() -> new ResourceNotFound("The Id: " + id + "Not Found")
+		);
+		return ResponseEntity.status(HttpStatus.OK).body(
+				Mapper.parseObject(addressRepository.save(address), AddressRequestDTO.class)
+		);
 	}
 	
-	public ResponseEntity<AddressRequestDTO> deleteAddress(UUID id){
+	public ResponseEntity<AddressRequestDTO> deleteAddress(UUID id) {
 		var entity = addressRepository.findById(id).orElseThrow(
-				()-> new ResourceNotFound("The Id: " + id + "Not Found"));
+				() -> new ResourceNotFound("The Id: " + id + "Not Found")
+		);
 		addressRepository.delete(entity);
 		return ResponseEntity.status(HttpStatus.OK).body(Mapper.parseObject(entity, AddressRequestDTO.class));
 	}

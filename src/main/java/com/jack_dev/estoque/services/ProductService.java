@@ -32,8 +32,11 @@ public class ProductService {
 	//	Get One Product
 	public ResponseEntity<ProductRequestDTO> getOneProduct(UUID id) {
 		var entity = productRepository.findById(id).orElseThrow(
-				() -> new ResourceNotFound("The Id: " + id + " Not Found!"));
-		return ResponseEntity.status(HttpStatus.OK).body(Mapper.parseObject(entity, ProductRequestDTO.class));
+				() -> new ResourceNotFound("The Id: " + id + " Not Found!")
+		);
+		return ResponseEntity.status(HttpStatus.OK).body(
+				Mapper.parseObject(entity, ProductRequestDTO.class)
+		);
 	}
 	
 	// Create Product
@@ -45,17 +48,22 @@ public class ProductService {
 	//Upgrade a Product
 	public ResponseEntity<ProductRequestDTO> updateProduct(UUID id, Product product) {
 		var entity = productRepository.findById(id).orElseThrow(
-				() -> new ResourceNotFound("The Id: " + id + " Not Found!"));
-		productRepository.save(entity);
-		return ResponseEntity.status(HttpStatus.OK).body(Mapper.parseObject(entity, ProductRequestDTO.class));
+				() -> new ResourceNotFound("The Id: " + id + " Not Found!")
+		);
+		return ResponseEntity.status(HttpStatus.OK).body(
+				Mapper.parseObject(productRepository.save(product), ProductRequestDTO.class)
+		);
 	}
 	
 	// Delete One Product
 	public ResponseEntity<ProductRequestDTO> deleteOneProduct(UUID id) {
 		var entity = productRepository.findById(id).orElseThrow(
-				() -> new ResourceNotFound("The Id: " + id + " Not Found!"));
+				() -> new ResourceNotFound("The Id: " + id + " Not Found!")
+		);
 		productRepository.delete(entity);
-		return ResponseEntity.status(HttpStatus.OK).body(Mapper.parseObject(entity, ProductRequestDTO.class));
+		return ResponseEntity.status(HttpStatus.OK).body(
+				Mapper.parseObject(entity, ProductRequestDTO.class)
+		);
 	}
 	
 }
