@@ -1,13 +1,19 @@
 package com.jack_dev.inventory_control.entities;
 
 import jakarta.persistence.*;
+import org.springframework.hateoas.RepresentationModel;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.util.Objects;
 import java.util.UUID;
 
 @Entity
 @Table(name = "tb_person")
-public class Person {
+public class Person extends RepresentationModel<Person> implements Serializable {
+	
+	@Serial
+	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.UUID)

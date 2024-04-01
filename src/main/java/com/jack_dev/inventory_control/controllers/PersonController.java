@@ -17,7 +17,6 @@ import java.util.UUID;
 @RequestMapping("/person")
 public class PersonController {
 	
-	@Autowired
 	private final PersonService personService;
 	
 	public PersonController(PersonService personService) {

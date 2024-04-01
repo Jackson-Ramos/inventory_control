@@ -1,6 +1,9 @@
 package com.jack_dev.inventory_control.services;
 
+import com.jack_dev.inventory_control.controllers.AddressController;
+import com.jack_dev.inventory_control.dto.AddressRequestDTO;
 import com.jack_dev.inventory_control.dto.ProductRequestDTO;
+import com.jack_dev.inventory_control.entities.Address;
 import com.jack_dev.inventory_control.entities.Product;
 import com.jack_dev.inventory_control.exceptions.ResourceNotFound;
 import com.jack_dev.inventory_control.mapper.Mapper;
@@ -10,14 +13,20 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 @Service
 public class ProductService {
 	
-	@Autowired
 	private final ProductRepository productRepository;
+	
+	@Autowired
+	private AddressService addressService;
+	@Autowired
+	private AddressController addressController;
 	
 	public ProductService(ProductRepository productRepository) {
 		this.productRepository = productRepository;
@@ -44,6 +53,22 @@ public class ProductService {
 		var entity = Mapper.parseObject(productRepository.save(product), ProductRequestDTO.class);
 		return ResponseEntity.status(HttpStatus.CREATED).body(entity);
 	}
+	
+	/*public ResponseEntity<ProductRequestDTO> createNewProduct(Product product) {
+		Set<Address> addresses = (Set<Address>) addressService.getOneAddress(getOneProduct();
+		
+		Product prod = new Product(
+				null,
+				product.getCode(),
+				product.getName(),
+				product.getPrice(),
+				addresses
+		);
+		return ResponseEntity.status(HttpStatus.CREATED).body(
+				Mapper.parseObject(prod, ProductRequestDTO.class)
+		);
+	}
+	*/
 	
 	//Upgrade a Product
 	public ResponseEntity<ProductRequestDTO> updateProduct(UUID id, Product product) {

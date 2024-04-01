@@ -17,7 +17,6 @@ import java.util.UUID;
 @RequestMapping("/address")
 public class AddressController {
 	
-	@Autowired
 	private final AddressService addressService;
 	
 	public AddressController(AddressService addressService) {

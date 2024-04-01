@@ -2,6 +2,7 @@ package com.jack_dev.inventory_control.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
+import org.springframework.hateoas.RepresentationModel;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -11,7 +12,7 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "tb_Address")
-public class Address implements Serializable {
+public class Address extends RepresentationModel<Address> implements Serializable {
 	
 	@Serial
 	private static final long serialVersionUID = 1L;
