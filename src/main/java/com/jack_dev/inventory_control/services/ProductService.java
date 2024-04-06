@@ -48,34 +48,36 @@ public class ProductService {
 		);
 	}
 	
+	/*
+		// Create Product
+		public ResponseEntity<ProductRequestDTO> createNewProduct(Product product) {
+			var entity = Mapper.parseObject(productRepository.save(product), ProductRequestDTO.class);
+			return ResponseEntity.status(HttpStatus.CREATED).body(entity);
+		}
+		*/
+	
 	// Create Product
 	public ResponseEntity<ProductRequestDTO> createNewProduct(Product product) {
-		var entity = Mapper.parseObject(productRepository.save(product), ProductRequestDTO.class);
-		return ResponseEntity.status(HttpStatus.CREATED).body(entity);
-	}
-	
-	/*public ResponseEntity<ProductRequestDTO> createNewProduct(Product product) {
-		Set<Address> addresses = (Set<Address>) addressService.getOneAddress(getOneProduct();
+		Set<Address> addresses = (Set<Address>) addressService.getOneAddress(product.getId());
 		
 		Product prod = new Product(
-				null,
+				 null,
 				product.getCode(),
 				product.getName(),
 				product.getPrice(),
 				addresses
 		);
 		return ResponseEntity.status(HttpStatus.CREATED).body(
-				Mapper.parseObject(prod, ProductRequestDTO.class)
+				Mapper.parseObject(productRepository.save(prod), ProductRequestDTO.class)
 		);
 	}
-	*/
 	
 	//Upgrade a Product
 	public ResponseEntity<ProductRequestDTO> updateProduct(UUID id, Product product) {
 		var entity = productRepository.findById(id).orElseThrow(
 				() -> new ResourceNotFound("The Id: " + id + " Not Found!")
 		);
-		return ResponseEntity.status(HttpStatus.OK).body(
+		return ResponseEntity.status(HttpStatus.CREATED).body(
 				Mapper.parseObject(productRepository.save(product), ProductRequestDTO.class)
 		);
 	}
@@ -86,9 +88,8 @@ public class ProductService {
 				() -> new ResourceNotFound("The Id: " + id + " Not Found!")
 		);
 		productRepository.delete(entity);
-		return ResponseEntity.status(HttpStatus.OK).body(
+		return ResponseEntity.status(HttpStatus.NO_CONTENT).body(
 				Mapper.parseObject(entity, ProductRequestDTO.class)
 		);
 	}
-	
 }

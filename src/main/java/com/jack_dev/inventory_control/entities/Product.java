@@ -2,7 +2,6 @@ package com.jack_dev.inventory_control.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
-import org.springframework.hateoas.RepresentationModel;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -12,7 +11,7 @@ import java.util.Set;
 import java.util.UUID;
 
 @Entity(name = "tb_products")
-public class Product extends RepresentationModel<Product> implements Serializable {
+public class Product implements Serializable {
 	
 	@Serial
 	private static final long serialVersionUID = 1L;

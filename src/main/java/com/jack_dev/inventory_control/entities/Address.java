@@ -12,7 +12,7 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "tb_Address")
-public class Address extends RepresentationModel<Address> implements Serializable {
+public class Address implements Serializable {
 	
 	@Serial
 	private static final long serialVersionUID = 1L;
