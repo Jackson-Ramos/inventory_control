@@ -33,7 +33,7 @@ public class AddressController {
 	@GetMapping(value = "/{id}",
 			produces = MediaType.APPLICATION_JSON_VALUE
 	)
-	public ResponseEntity<AddressRequestDTO> findById(@PathVariable UUID id) {
+	public ResponseEntity<AddressRequestDTO> findById(@PathVariable String id) {
 		return addressService.getOneAddress(id);
 	}
 	
@@ -49,14 +49,14 @@ public class AddressController {
 			produces = MediaType.APPLICATION_JSON_VALUE,
 			consumes = MediaType.APPLICATION_JSON_VALUE
 	)
-	public ResponseEntity<AddressRequestDTO> update(@PathVariable UUID id, @RequestBody Address address) {
+	public ResponseEntity<AddressRequestDTO> update(@PathVariable String id, @RequestBody Address address) {
 		return addressService.updateAddress(id, address);
 	}
 	
 	@DeleteMapping(value = "/{id}",
 			produces = MediaType.APPLICATION_JSON_VALUE
 	)
-	public ResponseEntity<AddressRequestDTO> delete(@PathVariable UUID id) {
+	public ResponseEntity<AddressRequestDTO> delete(@PathVariable String id) {
 		return addressService.deleteAddress(id);
 	}
 }

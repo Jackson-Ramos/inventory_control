@@ -11,7 +11,7 @@ public class AddressRequestDTO implements Serializable {
 	@Serial
 	private static final long serialVersionUID = 1L;
 	
-	private UUID id;
+	private String id;
 	private Long code;
 	private Long amount;
 	private Integer stock;
@@ -25,7 +25,7 @@ public class AddressRequestDTO implements Serializable {
 	public AddressRequestDTO() {
 	}
 	
-	public AddressRequestDTO(UUID id, Long code, Long amount, Integer stock, Integer deposit, Integer read,
+	public AddressRequestDTO(String id, Long code, Long amount, Integer stock, Integer deposit, Integer read,
 	                         Integer building, Integer level, Integer apartment, Set<ProductRequestDTO> products) {
 		this.id = id;
 		this.code = code;
@@ -39,11 +39,11 @@ public class AddressRequestDTO implements Serializable {
 		this.products = products;
 	}
 	
-	public UUID getId() {
+	public String getId() {
 		return id;
 	}
 	
-	public void setId(UUID id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 	

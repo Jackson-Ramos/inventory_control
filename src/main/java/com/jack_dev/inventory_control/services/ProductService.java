@@ -39,7 +39,7 @@ public class ProductService {
 	}
 	
 	//	Get One Product
-	public ResponseEntity<ProductRequestDTO> getOneProduct(UUID id) {
+	public ResponseEntity<ProductRequestDTO> getOneProduct(String id) {
 		var entity = productRepository.findById(id).orElseThrow(
 				() -> new ResourceNotFound("The Id: " + id + " Not Found!")
 		);
@@ -61,7 +61,7 @@ public class ProductService {
 		Set<Address> addresses = (Set<Address>) addressService.getOneAddress(product.getId());
 		
 		Product prod = new Product(
-				 null,
+				"",
 				product.getCode(),
 				product.getName(),
 				product.getPrice(),
@@ -73,7 +73,7 @@ public class ProductService {
 	}
 	
 	//Upgrade a Product
-	public ResponseEntity<ProductRequestDTO> updateProduct(UUID id, Product product) {
+	public ResponseEntity<ProductRequestDTO> updateProduct(String id, Product product) {
 		var entity = productRepository.findById(id).orElseThrow(
 				() -> new ResourceNotFound("The Id: " + id + " Not Found!")
 		);
@@ -83,7 +83,7 @@ public class ProductService {
 	}
 	
 	// Delete One Product
-	public ResponseEntity<ProductRequestDTO> deleteOneProduct(UUID id) {
+	public ResponseEntity<ProductRequestDTO> deleteOneProduct(String id) {
 		var entity = productRepository.findById(id).orElseThrow(
 				() -> new ResourceNotFound("The Id: " + id + " Not Found!")
 		);

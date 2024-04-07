@@ -2,6 +2,7 @@ package com.jack_dev.inventory_control.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
+import lombok.*;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -9,7 +10,11 @@ import java.math.BigDecimal;
 import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
-
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
 @Entity(name = "tb_products")
 public class Product implements Serializable {
 	
@@ -19,7 +24,7 @@ public class Product implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.UUID)
 	@Column(name = "product_id")
-	private UUID id;
+	private String id;
 	
 	@Column(name = "product_code", unique = true, nullable = false)
 	private Long code;
@@ -38,57 +43,7 @@ public class Product implements Serializable {
 	@JsonIgnoreProperties("Product")
 	private Set<Address> addresses;
 	
-	public Product() {
-	}
-	
-	public Product(UUID id, Long code, String name, BigDecimal price, Set<Address> addresses) {
-		this.id = id;
-		this.code = code;
-		this.name = name;
-		this.price = price;
-		this.addresses = addresses;
-	}
-	
-	public UUID getId() {
-		return id;
-	}
-	
-	public void setId(UUID id) {
-		this.id = id;
-	}
-	
-	public Long getCode() {
-		return code;
-	}
-	
-	public void setCode(Long code) {
-		this.code = code;
-	}
-	
-	public String getName() {
-		return name;
-	}
-	
-	public void setName(String name) {
-		this.name = name;
-	}
-	
-	public BigDecimal getPrice() {
-		return price;
-	}
-	
-	public void setPrice(BigDecimal price) {
-		this.price = price;
-	}
-	
-	public Set<Address> getAddresses() {
-		return addresses;
-	}
-	
-	public void setAddresses(Set<Address> addresses) {
-		this.addresses = addresses;
-	}
-	
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;

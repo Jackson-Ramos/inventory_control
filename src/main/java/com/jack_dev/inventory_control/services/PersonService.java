@@ -32,7 +32,7 @@ public class PersonService {
 	}
 	
 	// Get One People
-	public ResponseEntity<PersonRequestDTO> getOnePerson(UUID id) {
+	public ResponseEntity<PersonRequestDTO> getOnePerson(String id) {
 		var entity = personRepository.findById(id).orElseThrow(
 				() -> new ResourceNotFound("The Id: " + id + "Not Found")
 		);
@@ -50,7 +50,7 @@ public class PersonService {
 	}
 	
 	// Update People
-	public ResponseEntity<PersonRequestDTO> updatePerson(UUID id, Person person) {
+	public ResponseEntity<PersonRequestDTO> updatePerson(String id, Person person) {
 		var entity = personRepository.findById(id).orElseThrow(
 				() -> new ResourceNotFound("The Id: " + id + "Not Found")
 		);
@@ -61,7 +61,7 @@ public class PersonService {
 	}
 	
 	// Delete a Person
-	public ResponseEntity<PersonRequestDTO> deletePerson(UUID id){
+	public ResponseEntity<PersonRequestDTO> deletePerson(String id){
 		var entity = personRepository.findById(id).orElseThrow(
 				()-> new ResourceNotFound("The Id: " + id + "Not Found")
 		);

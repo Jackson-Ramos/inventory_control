@@ -1,13 +1,18 @@
 package com.jack_dev.inventory_control.entities;
 
 import jakarta.persistence.*;
+import lombok.*;
 import org.springframework.hateoas.RepresentationModel;
 
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.Objects;
 import java.util.UUID;
-
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
 @Entity
 @Table(name = "tb_person")
 public class Person extends RepresentationModel<Person> implements Serializable {
@@ -18,7 +23,7 @@ public class Person extends RepresentationModel<Person> implements Serializable 
 	@Id
 	@GeneratedValue(strategy = GenerationType.UUID)
 	@Column(name = "person_id")
-	private UUID id;
+	private String id;
 	@Column(name = "code")
 	private Integer code;
 	@Column(name = "firt_name")
@@ -27,57 +32,6 @@ public class Person extends RepresentationModel<Person> implements Serializable 
 	private String lastName;
 	@Column(name = "password")
 	private String password;
-	
-	public Person() {
-	}
-	
-	public Person(UUID id, Integer code, String firtName, String lastName, String password) {
-		this.id = id;
-		this.code = code;
-		this.firtName = firtName;
-		this.lastName = lastName;
-		this.password = password;
-	}
-	
-	public UUID getId() {
-		return id;
-	}
-	
-	public void setId(UUID id) {
-		this.id = id;
-	}
-	
-	public Integer getCode() {
-		return code;
-	}
-	
-	public void setCode(Integer code) {
-		this.code = code;
-	}
-	
-	public String getFirtName() {
-		return firtName;
-	}
-	
-	public void setFirtName(String firtName) {
-		this.firtName = firtName;
-	}
-	
-	public String getLastName() {
-		return lastName;
-	}
-	
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-	
-	public String getPassword() {
-		return password;
-	}
-	
-	public void setPassword(String password) {
-		this.password = password;
-	}
 	
 	@Override
 	public boolean equals(Object o) {

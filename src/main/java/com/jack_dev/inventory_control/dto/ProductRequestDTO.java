@@ -12,7 +12,7 @@ public class ProductRequestDTO implements Serializable {
 	@Serial
 	private static final long serialVersionUID = 1L;
 	
-	private UUID id;
+	private String id;
 	private Long code;
 	private String name;
 	private BigDecimal price;
@@ -21,7 +21,7 @@ public class ProductRequestDTO implements Serializable {
 	public ProductRequestDTO() {
 	}
 	
-	public ProductRequestDTO(UUID id, Long code, String name, BigDecimal price, Set<AddressRequestDTO> addresses) {
+	public ProductRequestDTO(String id, Long code, String name, BigDecimal price, Set<AddressRequestDTO> addresses) {
 		this.id = id;
 		this.code = code;
 		this.name = name;
@@ -29,11 +29,11 @@ public class ProductRequestDTO implements Serializable {
 		this.addresses = addresses;
 	}
 	
-	public UUID getId() {
+	public String getId() {
 		return id;
 	}
 	
-	public void setId(UUID id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 	

@@ -32,7 +32,7 @@ public class ProductController {
 	
 	@GetMapping(value = "/{id}",
 			produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<ProductRequestDTO> getOneProduct(@PathVariable UUID id) {
+	public ResponseEntity<ProductRequestDTO> getOneProduct(@PathVariable String id) {
 		return productService.getOneProduct(id);
 	}
 	
@@ -48,7 +48,7 @@ public class ProductController {
 			produces = MediaType.APPLICATION_JSON_VALUE,
 			consumes = MediaType.APPLICATION_JSON_VALUE
 	)
-	public ResponseEntity<ProductRequestDTO> updateProduct(@PathVariable UUID id, @RequestBody Product product) {
+	public ResponseEntity<ProductRequestDTO> updateProduct(@PathVariable String id, @RequestBody Product product) {
 		return productService.updateProduct(id, product);
 	}
 	
@@ -56,7 +56,7 @@ public class ProductController {
 			consumes = MediaType.APPLICATION_JSON_VALUE,
 			produces = MediaType.APPLICATION_JSON_VALUE
 	)
-	public ResponseEntity<ProductRequestDTO> deleteOneProduct(@PathVariable UUID id) {
+	public ResponseEntity<ProductRequestDTO> deleteOneProduct(@PathVariable String id) {
 		return productService.deleteOneProduct(id);
 	}
 }

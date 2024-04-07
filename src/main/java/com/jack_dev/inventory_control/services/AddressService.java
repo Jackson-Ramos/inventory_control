@@ -32,7 +32,7 @@ public class AddressService {
 	}
 	
 	//	Get One Address
-	public ResponseEntity<AddressRequestDTO> getOneAddress(UUID id) {
+	public ResponseEntity<AddressRequestDTO> getOneAddress(String id) {
 		var entity = addressRepository.findById(id).orElseThrow(
 				() -> new ResourceNotFound("The Id: " + id + "Not Found")
 		);
@@ -46,7 +46,7 @@ public class AddressService {
 	}
 	
 	// Update a Address
-	public ResponseEntity<AddressRequestDTO> updateAddress(UUID id, Address address) {
+	public ResponseEntity<AddressRequestDTO> updateAddress(String id, Address address) {
 		var entity = addressRepository.findById(id).orElseThrow(
 				() -> new ResourceNotFound("The Id: " + id + "Not Found")
 		);
@@ -55,7 +55,7 @@ public class AddressService {
 		);
 	}
 	
-	public ResponseEntity<AddressRequestDTO> deleteAddress(UUID id) {
+	public ResponseEntity<AddressRequestDTO> deleteAddress(String id) {
 		var entity = addressRepository.findById(id).orElseThrow(
 				() -> new ResourceNotFound("The Id: " + id + "Not Found")
 		);

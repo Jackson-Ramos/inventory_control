@@ -33,7 +33,7 @@ public class PersonController {
 	@GetMapping(value = "/{id}",
 			produces = MediaType.APPLICATION_JSON_VALUE
 	)
-	public ResponseEntity<PersonRequestDTO> getOnePerson(@PathVariable UUID id) {
+	public ResponseEntity<PersonRequestDTO> getOnePerson(@PathVariable String id) {
 		return personService.getOnePerson(id);
 	}
 	
@@ -49,14 +49,14 @@ public class PersonController {
 			consumes = MediaType.APPLICATION_JSON_VALUE,
 			produces = MediaType.APPLICATION_JSON_VALUE
 	)
-	public ResponseEntity<PersonRequestDTO> updatePerson(@PathVariable UUID id, @RequestBody Person person){
+	public ResponseEntity<PersonRequestDTO> updatePerson(@PathVariable String id, @RequestBody Person person){
 		return personService.updatePerson(id, person);
 	}
 	
 	@DeleteMapping(value = "/{id}",
 	produces = MediaType.APPLICATION_JSON_VALUE
 	)
-	public ResponseEntity<PersonRequestDTO>delete(@PathVariable UUID id){
+	public ResponseEntity<PersonRequestDTO>delete(@PathVariable String id){
 		return personService.deletePerson(id);
 	}
 }

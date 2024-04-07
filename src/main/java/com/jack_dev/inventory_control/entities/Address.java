@@ -2,7 +2,7 @@ package com.jack_dev.inventory_control.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
-import org.springframework.hateoas.RepresentationModel;
+import lombok.*;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -10,6 +10,11 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
 @Entity
 @Table(name = "tb_Address")
 public class Address implements Serializable {
@@ -20,7 +25,7 @@ public class Address implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.UUID)
 	@Column(name = "adress_id")
-	private UUID id;
+	private String id;
 	
 	@Column(name = "address_code", unique = true, nullable = false)
 	private Long code;
@@ -42,102 +47,6 @@ public class Address implements Serializable {
 	@JsonIgnoreProperties("address")
 	private Set<Product> products;
 	
-	public Address() {
-	}
-	
-	public Address(UUID id, Long code, Long amount, Integer stock, Integer deposit, Integer read,
-	               Integer building, Integer level, Integer apartment, Set<Product> products) {
-		this.id = id;
-		this.code = code;
-		this.amount = amount;
-		this.stock = stock;
-		this.deposit = deposit;
-		this.read = read;
-		this.building = building;
-		this.level = level;
-		this.apartment = apartment;
-		this.products = products;
-	}
-	
-	public UUID getId() {
-		return id;
-	}
-	
-	public void setId(UUID id) {
-		this.id = id;
-	}
-	
-	public Long getCode() {
-		return code;
-	}
-	
-	public void setCode(Long code) {
-		this.code = code;
-	}
-	
-	public Long getAmount() {
-		return amount;
-	}
-	
-	public void setAmount(Long amount) {
-		this.amount = amount;
-	}
-	
-	public Integer getStock() {
-		return stock;
-	}
-	
-	public void setStock(Integer stock) {
-		this.stock = stock;
-	}
-	
-	public Integer getDeposit() {
-		return deposit;
-	}
-	
-	public void setDeposit(Integer deposit) {
-		this.deposit = deposit;
-	}
-	
-	public Integer getRead() {
-		return read;
-	}
-	
-	public void setRead(Integer read) {
-		this.read = read;
-	}
-	
-	public Integer getBuilding() {
-		return building;
-	}
-	
-	public void setBuilding(Integer building) {
-		this.building = building;
-	}
-	
-	public Integer getLevel() {
-		return level;
-	}
-	
-	public void setLevel(Integer level) {
-		this.level = level;
-	}
-	
-	public Integer getApartment() {
-		return apartment;
-	}
-	
-	public void setApartment(Integer apartment) {
-		this.apartment = apartment;
-	}
-	
-	public Set<Product> getProducts() {
-		return products;
-	}
-	
-	public void setProducts(Set<Product> products) {
-		this.products = products;
-	}
 	
 	@Override
 	public boolean equals(Object o) {

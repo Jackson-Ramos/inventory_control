@@ -5,7 +5,7 @@ import java.util.UUID;
 
 public class PersonRequestDTO {
 	
-	private UUID id;
+	private String id;
 	private Integer code;
 	private String firtName;
 	private String lastName;
@@ -14,7 +14,7 @@ public class PersonRequestDTO {
 	public PersonRequestDTO() {
 	}
 	
-	public PersonRequestDTO(UUID id, Integer code, String firtName, String lastName, String password) {
+	public PersonRequestDTO(String id, Integer code, String firtName, String lastName, String password) {
 		this.id = id;
 		this.code = code;
 		this.firtName = firtName;
@@ -22,11 +22,11 @@ public class PersonRequestDTO {
 		this.password = password;
 	}
 	
-	public UUID getId() {
+	public String getId() {
 		return id;
 	}
 	
-	public void setId(UUID id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 	
