@@ -43,32 +43,4 @@ public class Product implements Serializable {
 	@JsonIgnoreProperties("Product")
 	private Set<Address> addresses;
 	
-
-	@Override
-	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (o == null || getClass() != o.getClass()) return false;
-		Product product = (Product) o;
-		return Objects.equals(id, product.id)
-				&& Objects.equals(code, product.code)
-				&& Objects.equals(name, product.name)
-				&& Objects.equals(price, product.price)
-				&& Objects.equals(addresses, product.addresses);
-	}
-	
-	@Override
-	public int hashCode() {
-		return Objects.hash(id, code, name, price, addresses);
-	}
-	
-	@Override
-	public String toString() {
-		return "Product{" +
-				"id=" + id +
-				", code=" + code +
-				", name='" + name + '\'' +
-				", price=" + price +
-				", addresses=" + addresses +
-				'}';
-	}
 }

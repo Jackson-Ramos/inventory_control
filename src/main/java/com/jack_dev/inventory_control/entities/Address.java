@@ -13,8 +13,6 @@ import java.util.UUID;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
-@Setter
 @Entity
 @Table(name = "tb_Address")
 public class Address implements Serializable {
@@ -47,42 +45,4 @@ public class Address implements Serializable {
 	@JsonIgnoreProperties("address")
 	private Set<Product> products;
 	
-	
-	@Override
-	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (o == null || getClass() != o.getClass()) return false;
-		Address address = (Address) o;
-		return Objects.equals(id, address.id)
-				&& Objects.equals(code, address.code)
-				&& Objects.equals(amount, address.amount)
-				&& Objects.equals(stock, address.stock)
-				&& Objects.equals(deposit, address.deposit)
-				&& Objects.equals(read, address.read)
-				&& Objects.equals(building, address.building)
-				&& Objects.equals(level, address.level)
-				&& Objects.equals(apartment, address.apartment)
-				&& Objects.equals(products, address.products);
-	}
-	
-	@Override
-	public int hashCode() {
-		return Objects.hash(id, code, amount, stock, deposit, read, building, level, apartment, products);
-	}
-	
-	@Override
-	public String toString() {
-		return "Address{" +
-				"id=" + id +
-				", code=" + code +
-				", amount=" + amount +
-				", stock=" + stock +
-				", deposit=" + deposit +
-				", read=" + read +
-				", building=" + building +
-				", level=" + level +
-				", apartment=" + apartment +
-				", products=" + products +
-				'}';
-	}
 }

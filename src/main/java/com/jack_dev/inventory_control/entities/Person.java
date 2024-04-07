@@ -11,8 +11,6 @@ import java.util.UUID;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
-@Setter
 @Entity
 @Table(name = "tb_person")
 public class Person extends RepresentationModel<Person> implements Serializable {
@@ -32,32 +30,4 @@ public class Person extends RepresentationModel<Person> implements Serializable 
 	private String lastName;
 	@Column(name = "password")
 	private String password;
-	
-	@Override
-	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (o == null || getClass() != o.getClass()) return false;
-		Person person = (Person) o;
-		return Objects.equals(id, person.id)
-				&& Objects.equals(code, person.code)
-				&& Objects.equals(firtName, person.firtName)
-				&& Objects.equals(lastName, person.lastName)
-				&& Objects.equals(password, person.password);
-	}
-	
-	@Override
-	public int hashCode() {
-		return Objects.hash(id, code, firtName, lastName, password);
-	}
-	
-	@Override
-	public String toString() {
-		return "Person{" +
-				"id=" + id +
-				", code=" + code +
-				", firtName='" + firtName + '\'' +
-				", lastName='" + lastName + '\'' +
-				", password='" + password + '\'' +
-				'}';
-	}
 }

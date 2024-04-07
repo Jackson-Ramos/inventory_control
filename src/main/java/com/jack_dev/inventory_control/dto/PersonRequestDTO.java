@@ -1,8 +1,15 @@
 package com.jack_dev.inventory_control.dto;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.util.Objects;
 import java.util.UUID;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class PersonRequestDTO {
 	
 	private String id;
@@ -11,82 +18,4 @@ public class PersonRequestDTO {
 	private String lastName;
 	private String password;
 	
-	public PersonRequestDTO() {
-	}
-	
-	public PersonRequestDTO(String id, Integer code, String firtName, String lastName, String password) {
-		this.id = id;
-		this.code = code;
-		this.firtName = firtName;
-		this.lastName = lastName;
-		this.password = password;
-	}
-	
-	public String getId() {
-		return id;
-	}
-	
-	public void setId(String id) {
-		this.id = id;
-	}
-	
-	public Integer getCode() {
-		return code;
-	}
-	
-	public void setCode(Integer code) {
-		this.code = code;
-	}
-	
-	public String getFirtName() {
-		return firtName;
-	}
-	
-	public void setFirtName(String firtName) {
-		this.firtName = firtName;
-	}
-	
-	public String getLastName() {
-		return lastName;
-	}
-	
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-	
-	public String getPassword() {
-		return password;
-	}
-	
-	public void setPassword(String password) {
-		this.password = password;
-	}
-	
-	@Override
-	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (o == null || getClass() != o.getClass()) return false;
-		PersonRequestDTO person = (PersonRequestDTO) o;
-		return Objects.equals(id, person.id)
-				&& Objects.equals(code, person.code)
-				&& Objects.equals(firtName, person.firtName)
-				&& Objects.equals(lastName, person.lastName)
-				&& Objects.equals(password, person.password);
-	}
-	
-	@Override
-	public int hashCode() {
-		return Objects.hash(id, code, firtName, lastName, password);
-	}
-	
-	@Override
-	public String toString() {
-		return "Person{" +
-				"id=" + id +
-				", code=" + code +
-				", firtName='" + firtName + '\'' +
-				", lastName='" + lastName + '\'' +
-				", password='" + password + '\'' +
-				'}';
-	}
 }
