@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 @Controller
@@ -45,18 +46,4 @@ public class AddressController {
 		return addressService.saveAddress(address);
 	}
 	
-	@PutMapping(value = "/{id}",
-			produces = MediaType.APPLICATION_JSON_VALUE,
-			consumes = MediaType.APPLICATION_JSON_VALUE
-	)
-	public ResponseEntity<AddressRequestDTO> update(@PathVariable String id, @RequestBody Address address) {
-		return addressService.updateAddress(id, address);
-	}
-	
-	@DeleteMapping(value = "/{id}",
-			produces = MediaType.APPLICATION_JSON_VALUE
-	)
-	public ResponseEntity<AddressRequestDTO> delete(@PathVariable String id) {
-		return addressService.deleteAddress(id);
-	}
 }

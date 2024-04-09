@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 @Service
@@ -24,7 +25,7 @@ public class PersonService {
 	}
 	
 	// Get All People
-	public ResponseEntity<List<PersonRequestDTO>> getAllPersons() {
+	public ResponseEntity<Set<PersonRequestDTO>> getAllPersons() {
 		var listOfPeople = Mapper.parseListObjects(
 				personRepository.findAll(), PersonRequestDTO.class
 		);

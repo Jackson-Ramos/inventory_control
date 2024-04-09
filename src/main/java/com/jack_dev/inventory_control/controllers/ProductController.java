@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 @Controller
@@ -26,7 +27,7 @@ public class ProductController {
 	@GetMapping(
 			produces = MediaType.APPLICATION_JSON_VALUE
 	)
-	public ResponseEntity<List<ProductRequestDTO>> getAllProducts() {
+	public ResponseEntity<Set<ProductRequestDTO>> getAllProducts() {
 		return productService.getAllProducts();
 	}
 	
@@ -44,19 +45,4 @@ public class ProductController {
 		return productService.createNewProduct(product);
 	}
 	
-	@PutMapping(value = "/{id}",
-			produces = MediaType.APPLICATION_JSON_VALUE,
-			consumes = MediaType.APPLICATION_JSON_VALUE
-	)
-	public ResponseEntity<ProductRequestDTO> updateProduct(@PathVariable String id, @RequestBody Product product) {
-		return productService.updateProduct(id, product);
-	}
-	
-	@DeleteMapping(value = "/{id}",
-			consumes = MediaType.APPLICATION_JSON_VALUE,
-			produces = MediaType.APPLICATION_JSON_VALUE
-	)
-	public ResponseEntity<ProductRequestDTO> deleteOneProduct(@PathVariable String id) {
-		return productService.deleteOneProduct(id);
-	}
 }

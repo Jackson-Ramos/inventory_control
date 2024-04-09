@@ -7,6 +7,7 @@ import lombok.*;
 import java.io.Serial;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
@@ -15,7 +16,8 @@ import java.util.UUID;
 @NoArgsConstructor
 @Getter
 @Setter
-@Entity(name = "tb_products")
+@Entity()
+@Table(name = "tb_products")
 public class Product implements Serializable {
 	
 	@Serial
@@ -43,4 +45,7 @@ public class Product implements Serializable {
 	@JsonIgnoreProperties("Product")
 	private Set<Address> addresses;
 	
+	public void addAddress(Address address) {
+		this.addresses.add(address);
+	}
 }
