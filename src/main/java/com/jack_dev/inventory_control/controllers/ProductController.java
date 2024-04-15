@@ -24,25 +24,18 @@ public class ProductController {
 		this.productService = productService;
 	}
 	
-	@GetMapping(
-			produces = MediaType.APPLICATION_JSON_VALUE
-	)
-	public ResponseEntity<Set<ProductRequestDTO>> getAllProducts() {
+	@GetMapping()
+	public ResponseEntity<List<Product>> getAllProducts() {
 		return productService.getAllProducts();
 	}
 	
-	@GetMapping(value = "/{id}",
-			produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<ProductRequestDTO> getOneProduct(@PathVariable String id) {
+	@GetMapping(value = "/{id}")
+	public ResponseEntity<Product> getOneProduct(@PathVariable String id) {
 		return productService.getOneProduct(id);
 	}
 	
-	@PostMapping(
-			consumes = MediaType.APPLICATION_JSON_VALUE,
-			produces = MediaType.APPLICATION_JSON_VALUE
-	)
-	public ResponseEntity<ProductRequestDTO> CreateNewProduct(@RequestBody Product product) {
-		return productService.createNewProduct(product);
+	@PostMapping
+	public ResponseEntity<ProductRequestDTO> createProduct(@RequestBody ProductRequestDTO productRequestDTO) {
+		return productService.createNewProduct(productRequestDTO);
 	}
-	
 }

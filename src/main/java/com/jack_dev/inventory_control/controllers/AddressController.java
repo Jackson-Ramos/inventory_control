@@ -27,14 +27,14 @@ public class AddressController {
 	@GetMapping(
 			produces = MediaType.APPLICATION_JSON_VALUE
 	)
-	public ResponseEntity<List<AddressRequestDTO>> findAll() {
+	public ResponseEntity<List<Address>> findAll() {
 		return addressService.getAllAddress();
 	}
 	
 	@GetMapping(value = "/{id}",
 			produces = MediaType.APPLICATION_JSON_VALUE
 	)
-	public ResponseEntity<AddressRequestDTO> findById(@PathVariable String id) {
+	public ResponseEntity<Address> findById(@PathVariable String id) {
 		return addressService.getOneAddress(id);
 	}
 	
@@ -42,8 +42,8 @@ public class AddressController {
 			produces = MediaType.APPLICATION_JSON_VALUE,
 			consumes = MediaType.APPLICATION_JSON_VALUE
 	)
-	public ResponseEntity<AddressRequestDTO> save(@RequestBody Address address) {
-		return addressService.saveAddress(address);
+	public ResponseEntity<AddressRequestDTO> save(@RequestBody AddressRequestDTO addressRequestDTO) {
+		return addressService.saveAddress(addressRequestDTO);
 	}
 	
 }

@@ -18,13 +18,12 @@ import java.util.UUID;
 @AllArgsConstructor
 public class ProductRequestDTO implements Serializable {
 	
-	@Serial
 	private static final long serialVersionUID = 1L;
 	
 	private String id;
 	private Long code;
 	private String name;
 	private BigDecimal price;
-	private Set<Address> addresses;
+	private List<String> addressIds;
 	
 }

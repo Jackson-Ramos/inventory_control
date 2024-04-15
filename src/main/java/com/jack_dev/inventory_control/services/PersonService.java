@@ -25,7 +25,7 @@ public class PersonService {
 	}
 	
 	// Get All People
-	public ResponseEntity<Set<PersonRequestDTO>> getAllPersons() {
+	public ResponseEntity<List<PersonRequestDTO>> getAllPersons() {
 		var listOfPeople = Mapper.parseListObjects(
 				personRepository.findAll(), PersonRequestDTO.class
 		);

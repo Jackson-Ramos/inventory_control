@@ -15,7 +15,6 @@ import java.util.UUID;
 
 public class AddressRequestDTO implements Serializable {
 	
-	@Serial
 	private static final long serialVersionUID = 1L;
 	
 	private String id;
@@ -27,6 +26,6 @@ public class AddressRequestDTO implements Serializable {
 	private Integer building;
 	private Integer level;
 	private Integer apartment;
-	private Set<ProductRequestDTO> products;
+	private List<String> productIds;
 	
 }

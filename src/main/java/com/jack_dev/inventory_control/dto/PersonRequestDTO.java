@@ -4,13 +4,16 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
 import java.util.Objects;
 import java.util.UUID;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class PersonRequestDTO {
+public class PersonRequestDTO implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
 	
 	private String id;
 	private Integer code;

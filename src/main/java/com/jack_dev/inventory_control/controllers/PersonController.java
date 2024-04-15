@@ -27,7 +27,7 @@ public class PersonController {
 	@GetMapping(
 			produces = MediaType.APPLICATION_JSON_VALUE
 	)
-	public ResponseEntity<Set<PersonRequestDTO>> getAllPersons() {
+	public ResponseEntity<List<PersonRequestDTO>> getAllPersons() {
 		return personService.getAllPersons();
 	}
 	

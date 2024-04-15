@@ -37,15 +37,16 @@ public class Product implements Serializable {
 	@Column(name = "price", nullable = false)
 	private BigDecimal price;
 	
-	@ManyToMany(fetch = FetchType.EAGER)
+	@ManyToMany()
 	@JoinTable(name = "products_addresses",
 			joinColumns = @JoinColumn(name = "product_id"),
 			inverseJoinColumns = @JoinColumn(name = "adress_id")
 	)
-	@JsonIgnoreProperties("Product")
-	private Set<Address> addresses;
+	@JsonIgnoreProperties("products")
+	private List<Address> addresses;
 	
 	public void addAddress(Address address) {
 		this.addresses.add(address);
 	}
+	
 }
