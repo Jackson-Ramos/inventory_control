@@ -21,7 +21,10 @@ public class AddressService {
 	private final AddressRepository addressRepository;
 	private final ProductRepository productRepository;
 	
-	public AddressService(AddressRepository addressRepository, ProductRepository productRepository) {
+	public AddressService(
+			AddressRepository addressRepository,
+			ProductRepository productRepository
+	) {
 		this.addressRepository = addressRepository;
 		this.productRepository = productRepository;
 	}
@@ -43,7 +46,6 @@ public class AddressService {
 	public ResponseEntity<AddressRequestDTO> saveAddress(AddressRequestDTO addressRequestDTO) {
 		List<Product> productsList =  productRepository.findAllById(addressRequestDTO.getProductIds());
 		
-		
 		Address addressResponse = new Address(
 				null,
 				addressRequestDTO.getCode(),
@@ -56,9 +58,11 @@ public class AddressService {
 				addressRequestDTO.getApartment(),
 				productsList
 		);
+		
 		productsList.forEach(addresses -> {
 			addresses.addAddress(addressResponse);
 		});
+		
 		var entity = Mapper.parseObject(addressRepository.save(addressResponse), AddressRequestDTO.class);
 		return ResponseEntity.status(HttpStatus.CREATED).body(entity);
 	}

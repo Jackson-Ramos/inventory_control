@@ -31,7 +31,6 @@ public class ProductService {
 	
 	//Get All Product
 	public ResponseEntity<List<Product>> getAllProducts() {
-		
 		return ResponseEntity.status(HttpStatus.OK).body(productRepository.findAll());
 	}
 	
