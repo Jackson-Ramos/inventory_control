@@ -1,6 +1,7 @@
 package com.jack_dev.inventory_control.services;
 
 import com.jack_dev.inventory_control.dto.PersonRequestDTO;
+import com.jack_dev.inventory_control.dto.PersonResponseDTO;
 import com.jack_dev.inventory_control.entities.Person;
 import com.jack_dev.inventory_control.exceptions.ResourceNotFound;
 import com.jack_dev.inventory_control.mapper.Mapper;
@@ -25,50 +26,64 @@ public class PersonService {
 	}
 	
 	// Get All People
-	public ResponseEntity<List<PersonRequestDTO>> getAllPersons() {
+	public ResponseEntity<List<PersonResponseDTO>> getAllPersons() {
 		var listOfPeople = Mapper.parseListObjects(
-				personRepository.findAll(), PersonRequestDTO.class
+				personRepository.findAll(), PersonResponseDTO.class
 		);
 		return ResponseEntity.status(HttpStatus.OK).body(listOfPeople);
 	}
 	
 	// Get One People
-	public ResponseEntity<PersonRequestDTO> getOnePerson(String id) {
+	public ResponseEntity<PersonResponseDTO> getOnePerson(String id) {
 		var entity = personRepository.findById(id).orElseThrow(
 				() -> new ResourceNotFound("The Id: " + id + "Not Found")
 		);
 		return ResponseEntity.status(HttpStatus.OK).body(
-				Mapper.parseObject(entity, PersonRequestDTO.class)
+				Mapper.parseObject(entity, PersonResponseDTO.class)
 		);
 	}
 	
 	// Create new People
-	public ResponseEntity<PersonRequestDTO> createNewPerson(Person person) {
-		var entity = Mapper.parseObject(
-				personRepository.save(person), PersonRequestDTO.class
-		);
-		return ResponseEntity.status(HttpStatus.CREATED).body(entity);
-	}
-	
-	// Update People
-	public ResponseEntity<PersonRequestDTO> updatePerson(String id, Person person) {
-		var entity = personRepository.findById(id).orElseThrow(
-				() -> new ResourceNotFound("The Id: " + id + "Not Found")
+	public ResponseEntity<PersonResponseDTO> createPerson(PersonRequestDTO personRequestDTO) {
+		Person person = new Person(
+				null,
+				personRequestDTO.getCode(),
+				personRequestDTO.getFirtName(),
+				personRequestDTO.getLastName(),
+				personRequestDTO.getPassword()
 		);
 		personRepository.save(person);
 		return ResponseEntity.status(HttpStatus.CREATED).body(
-				Mapper.parseObject(entity, PersonRequestDTO.class)
+				Mapper.parseObject(person, PersonResponseDTO.class)
+		);
+	}
+	
+	// Update People
+	public ResponseEntity<PersonResponseDTO> updatePerson(String id, PersonRequestDTO personRequestDTO) {
+		var entity = personRepository.findById(id).orElseThrow(
+				() -> new ResourceNotFound("The Id: " + id + "Not Found")
+		);
+		Person person = new Person(
+				null,
+				personRequestDTO.getCode(),
+				personRequestDTO.getFirtName(),
+				personRequestDTO.getLastName(),
+				personRequestDTO.getPassword()
+		);
+		personRepository.save(person);
+		return ResponseEntity.status(HttpStatus.CREATED).body(
+				Mapper.parseObject(person, PersonResponseDTO.class)
 		);
 	}
 	
 	// Delete a Person
-	public ResponseEntity<PersonRequestDTO> deletePerson(String id){
+	public ResponseEntity<PersonResponseDTO> deletePerson(String id){
 		var entity = personRepository.findById(id).orElseThrow(
 				()-> new ResourceNotFound("The Id: " + id + "Not Found")
 		);
 		personRepository.delete(entity);
 		return ResponseEntity.status(HttpStatus.OK).
-				body(Mapper.parseObject(entity, PersonRequestDTO.class)
+				body(Mapper.parseObject(entity, PersonResponseDTO.class)
 		);
 	}
 }

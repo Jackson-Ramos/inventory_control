@@ -14,7 +14,7 @@ public class OpenApiConfig {
 		return new OpenAPI()
 				.info(new Info()
 						.title("Inventory Control")
-						.version("1.0.0")
+						.version("V1")
 						.description("application of inventory control and management of items and products")
 						.termsOfService("https://Jcode.com.br")
 						.license(new License()

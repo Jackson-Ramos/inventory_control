@@ -1,7 +1,9 @@
 package com.jack_dev.inventory_control.controllers;
 
 import com.jack_dev.inventory_control.dto.PersonRequestDTO;
+import com.jack_dev.inventory_control.dto.PersonResponseDTO;
 import com.jack_dev.inventory_control.entities.Person;
+import com.jack_dev.inventory_control.openapi.PersonControllerOpenApi;
 import com.jack_dev.inventory_control.services.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -16,7 +18,7 @@ import java.util.UUID;
 @Controller
 @RestController
 @RequestMapping("/person")
-public class PersonController {
+public class PersonController implements PersonControllerOpenApi {
 	
 	private final PersonService personService;
 	
@@ -27,14 +29,14 @@ public class PersonController {
 	@GetMapping(
 			produces = MediaType.APPLICATION_JSON_VALUE
 	)
-	public ResponseEntity<List<PersonRequestDTO>> getAllPersons() {
+	public ResponseEntity<List<PersonResponseDTO>> getAllPersons() {
 		return personService.getAllPersons();
 	}
 	
 	@GetMapping(value = "/{id}",
 			produces = MediaType.APPLICATION_JSON_VALUE
 	)
-	public ResponseEntity<PersonRequestDTO> getOnePerson(@PathVariable String id) {
+	public ResponseEntity<PersonResponseDTO> getOnePerson(@PathVariable String id) {
 		return personService.getOnePerson(id);
 	}
 	
@@ -42,22 +44,22 @@ public class PersonController {
 			produces = MediaType.APPLICATION_JSON_VALUE,
 			consumes = MediaType.APPLICATION_JSON_VALUE
 	)
-	public ResponseEntity<PersonRequestDTO> CreateNewPerson(@RequestBody Person person) {
-		return personService.createNewPerson(person);
+	public ResponseEntity<PersonResponseDTO> CreatePerson(@RequestBody PersonRequestDTO personRequestDTO) {
+		return personService.createPerson(personRequestDTO);
 	}
 	
 	@PutMapping(value = "/{id}",
 			consumes = MediaType.APPLICATION_JSON_VALUE,
 			produces = MediaType.APPLICATION_JSON_VALUE
 	)
-	public ResponseEntity<PersonRequestDTO> updatePerson(@PathVariable String id, @RequestBody Person person){
-		return personService.updatePerson(id, person);
+	public ResponseEntity<PersonResponseDTO> updatePerson(@PathVariable String id, @RequestBody PersonRequestDTO personRequestDTO) {
+		return personService.updatePerson(id, personRequestDTO);
 	}
 	
 	@DeleteMapping(value = "/{id}",
-	produces = MediaType.APPLICATION_JSON_VALUE
+			produces = MediaType.APPLICATION_JSON_VALUE
 	)
-	public ResponseEntity<PersonRequestDTO>delete(@PathVariable String id){
+	public ResponseEntity<PersonResponseDTO> deletePerson(@PathVariable String id) {
 		return personService.deletePerson(id);
 	}
 }
