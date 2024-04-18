@@ -2,6 +2,7 @@ package com.jack_dev.inventory_control.services;
 
 import com.jack_dev.inventory_control.controllers.AddressController;
 import com.jack_dev.inventory_control.dto.ProductRequestDTO;
+import com.jack_dev.inventory_control.dto.ProductResponseDTO;
 import com.jack_dev.inventory_control.entities.Address;
 import com.jack_dev.inventory_control.entities.Product;
 import com.jack_dev.inventory_control.exceptions.ResourceNotFound;
@@ -30,19 +31,22 @@ public class ProductService {
 	}
 	
 	//Get All Product
-	public ResponseEntity<List<Product>> getAllProducts() {
-		return ResponseEntity.status(HttpStatus.OK).body(productRepository.findAll());
+	public ResponseEntity<List<ProductResponseDTO>> getAllProducts() {
+		var entities = Mapper.parseListObjects(productRepository.findAll(), ProductResponseDTO.class);
+		return ResponseEntity.status(HttpStatus.OK).body(entities);
 	}
 	
 	//	Get One Product
-	public ResponseEntity<Product> getOneProduct(String id) {
+	public ResponseEntity<ProductResponseDTO> getOneProduct(String id) {
 		var entity = productRepository.findById(id).orElseThrow(
 				() -> new ResourceNotFound("The Id: " + id + " Not Found!")
 		);
-		return ResponseEntity.status(HttpStatus.OK).body(entity);
+		return ResponseEntity.status(HttpStatus.OK).body(
+				Mapper.parseObject(entity, ProductResponseDTO.class)
+		);
 	}
 	// Create Product
-	public ResponseEntity<ProductRequestDTO> createNewProduct(ProductRequestDTO productRequestDTO) {
+	public ResponseEntity<ProductResponseDTO> createNewProduct(ProductRequestDTO productRequestDTO) {
 		
 		List<Address> addresses = addressRepository.findAllById(productRequestDTO.getAddressIds());
 		
@@ -59,7 +63,7 @@ public class ProductService {
 		});
 		
 		return ResponseEntity.status(HttpStatus.CREATED).body(
-				Mapper.parseObject(productRepository.save(productResponse), ProductRequestDTO.class)
+				Mapper.parseObject(productRepository.save(productResponse), ProductResponseDTO.class)
 		);
 	}
 }

@@ -20,14 +20,14 @@ public class Person extends RepresentationModel<Person> implements Serializable 
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.UUID)
-	@Column(name = "person_id")
+	@Column(name = "person_id", updatable = false, nullable = false, unique = true)
 	private String id;
-	@Column(name = "code")
+	@Column(name = "code", nullable = false)
 	private Integer code;
-	@Column(name = "firt_name")
+	@Column(name = "firt_name", nullable = false)
 	private String firtName;
-	@Column(name = "last_name")
+	@Column(name = "last_name", nullable = false)
 	private String lastName;
-	@Column(name = "password")
+	@Column(name = "password", nullable = false)
 	private String password;
 }

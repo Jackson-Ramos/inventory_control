@@ -1,4 +1,4 @@
-package com.jack_dev.inventory_control.dto;
+package com.jack_dev.inventory_control.exceptions;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

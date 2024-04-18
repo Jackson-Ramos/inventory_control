@@ -1,6 +1,6 @@
 package com.jack_dev.inventory_control.exceptions.handler;
 
-import com.jack_dev.inventory_control.dto.ExceptionResponse;
+import com.jack_dev.inventory_control.exceptions.ExceptionResponse;
 import com.jack_dev.inventory_control.exceptions.ResourceNotFound;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

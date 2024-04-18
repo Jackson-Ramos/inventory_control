@@ -29,25 +29,25 @@ public class Address implements Serializable {
 	@Column(name = "address_code", unique = true, nullable = false)
 	private Long code;
 	
-	@Column(name = "amount")
+	@Column(name = "amount", nullable = false)
 	private Long amount;
 	
-	@Column(name = "stock")
+	@Column(name = "stock", nullable = false)
 	private Integer stock;
 	
-	@Column(name = "deposit")
+	@Column(name = "deposit", nullable = false)
 	private Integer deposit;
 	
-	@Column(name = "read")
+	@Column(name = "read", nullable = false)
 	private Integer read;
 	
-	@Column(name = "building")
+	@Column(name = "building", nullable = false)
 	private Integer building;
 	
-	@Column(name = "level")
+	@Column(name = "level", nullable = false)
 	private Integer level;
 	
-	@Column(name = "apartment")
+	@Column(name = "apartment", nullable = false)
 	private Integer apartment;
 	
 	@ManyToMany(mappedBy = "addresses")
