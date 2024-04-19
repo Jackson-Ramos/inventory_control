@@ -33,7 +33,7 @@ public class PersonService {
 		return ResponseEntity.status(HttpStatus.OK).body(listOfPeople);
 	}
 	
-	// Get One People
+	// Get One Person
 	public ResponseEntity<PersonResponseDTO> getOnePerson(String id) {
 		var entity = personRepository.findById(id).orElseThrow(
 				() -> new ResourceNotFound("The Id: " + id + "Not Found")

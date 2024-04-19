@@ -55,7 +55,7 @@ public interface ProductControllerOpenApi {
 			description = "Adds a new products by passing in a JSON",
 			tags = {"Product"},
 			responses = {
-					@ApiResponse(description = "Success", responseCode = "200",
+					@ApiResponse(description = "Created", responseCode = "201",
 							content = @Content(schema = @Schema(implementation = Product.class))
 					),
 					@ApiResponse(description = "No Content", responseCode = "204", content = @Content()),
