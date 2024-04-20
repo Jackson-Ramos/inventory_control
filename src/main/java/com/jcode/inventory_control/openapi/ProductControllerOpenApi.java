@@ -32,7 +32,7 @@ public interface ProductControllerOpenApi {
 					@ApiResponse(description = "Internal Error", responseCode = "500", content = @Content())
 			}
 	)
-	public ResponseEntity<List<ProductResponseDTO>> getAllProducts();
+	ResponseEntity<List<ProductResponseDTO>> getAllProducts();
 	
 	@Operation(summary = "Finds a products", description = "Finds a products",
 			tags = {"Product"},
@@ -47,7 +47,7 @@ public interface ProductControllerOpenApi {
 					@ApiResponse(description = "Internal Error", responseCode = "500", content = @Content())
 			}
 	)
-	public ResponseEntity<ProductResponseDTO> getOneProduct(String id);
+	ResponseEntity<ProductResponseDTO> getOneProduct(String id);
 	
 	@Operation(summary = "Adds a new products",
 			description = "Adds a new products by passing in a JSON",
@@ -62,5 +62,5 @@ public interface ProductControllerOpenApi {
 					@ApiResponse(description = "Internal Error", responseCode = "500", content = @Content())
 			}
 	)
-	public ResponseEntity<ProductResponseDTO> createProduct(ProductRequestDTO productRequestDTO);
+	ResponseEntity<ProductResponseDTO> createProduct(ProductRequestDTO productRequestDTO);
 }

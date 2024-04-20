@@ -1,6 +1,7 @@
 package com.jcode.inventory_control.services;
 
 import com.jcode.inventory_control.dto.AddressRequestDTO;
+import com.jcode.inventory_control.dto.AddressResponseDTO;
 import com.jcode.inventory_control.entities.Address;
 import com.jcode.inventory_control.entities.Product;
 import com.jcode.inventory_control.exceptions.ResourceNotFound;
@@ -28,20 +29,21 @@ public class AddressService {
 	}
 	
 	//	Get All Address
-	public ResponseEntity<List<Address>> getAllAddress() {
-		return ResponseEntity.status(HttpStatus.OK).body(addressRepository.findAll());
+	public ResponseEntity<List<AddressResponseDTO>> getAllAddress() {
+		return ResponseEntity.status(HttpStatus.OK).
+				body(Mapper.parseListObjects(addressRepository.findAll(), AddressResponseDTO.class));
 	}
 	
 	//	Get One Address
-	public ResponseEntity<Address> getOneAddress(String id) {
+	public ResponseEntity<AddressResponseDTO> getOneAddress(String id) {
 		var entity = addressRepository.findById(id).orElseThrow(
 				() -> new ResourceNotFound("The Id: " + id + "Not Found")
 		);
-		return ResponseEntity.status(HttpStatus.OK).body(entity);
+		return ResponseEntity.status(HttpStatus.OK).body(Mapper.parseObject(entity, AddressResponseDTO.class));
 	}
 
 	// Post new Address
-	public ResponseEntity<AddressRequestDTO> saveAddress(AddressRequestDTO addressRequestDTO) {
+	public ResponseEntity<AddressResponseDTO> saveAddress(AddressRequestDTO addressRequestDTO) {
 		List<Product> productsList =  productRepository.findAllById(addressRequestDTO.getProductIds());
 		
 		Address addressResponse = new Address(
@@ -61,7 +63,7 @@ public class AddressService {
 			addresses.addAddress(addressResponse);
 		});
 		
-		var entity = Mapper.parseObject(addressRepository.save(addressResponse), AddressRequestDTO.class);
+		var entity = Mapper.parseObject(addressRepository.save(addressResponse), AddressResponseDTO.class);
 		return ResponseEntity.status(HttpStatus.CREATED).body(entity);
 	}
 	

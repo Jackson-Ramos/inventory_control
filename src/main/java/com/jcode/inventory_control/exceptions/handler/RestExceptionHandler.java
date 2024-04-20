@@ -24,7 +24,7 @@ public class RestExceptionHandler {
 	}
 	
 	@ExceptionHandler(ResourceNotFound.class)
-	public final ResponseEntity<ExceptionResponse> handleNotFoundException(Exception exception, WebRequest webRequest){
+	public final ResponseEntity<ExceptionResponse> handleNotFoundException(Exception exception, WebRequest webRequest) {
 		ExceptionResponse exceptionResponse = new ExceptionResponse(new Date(),
 				exception.getMessage(),
 				webRequest.getDescription(false)

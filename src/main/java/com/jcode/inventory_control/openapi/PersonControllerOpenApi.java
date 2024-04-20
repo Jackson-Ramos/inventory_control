@@ -12,7 +12,7 @@ import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 
-@Tag(name = "People", description = "methods related to employee creation, update, deletion and viewing")
+@Tag(name = "People", description = "Product-related methods")
 public interface PersonControllerOpenApi {
 	
 	@Operation(
@@ -35,7 +35,7 @@ public interface PersonControllerOpenApi {
 					@ApiResponse(description = "Internal Error", responseCode = "500", content = @Content)
 			}
 	)
-	public ResponseEntity<List<PersonResponseDTO>> getAllPersons();
+	ResponseEntity<List<PersonResponseDTO>> getAllPersons();
 	
 	@Operation(
 			summary = "Get one Person",
@@ -57,7 +57,7 @@ public interface PersonControllerOpenApi {
 					@ApiResponse(description = "Internal Error", responseCode = "500", content = @Content())
 			}
 	)
-	public ResponseEntity<PersonResponseDTO> getOnePerson(String id);
+	ResponseEntity<PersonResponseDTO> getOnePerson(String id);
 	
 	@Operation(
 			summary = "adds a new Person",
@@ -72,14 +72,14 @@ public interface PersonControllerOpenApi {
 									schema = @Schema(implementation = PersonResponseDTO.class)
 							)
 					),
-					@ApiResponse(description = "400", responseCode = "Bad Request", content = @Content()),
+					@ApiResponse(description = "Bad Request", responseCode = "400", content = @Content()),
 					@ApiResponse(description = "Unautorizad", responseCode = "401", content = @Content()),
 					@ApiResponse(description = "Forbildden", responseCode = "403", content = @Content()),
 					@ApiResponse(description = "Unprocessable Entity", responseCode = "422", content = @Content()),
 					@ApiResponse(description = "Internal Error", responseCode = "500", content = @Content())
 			}
 	)
-	public ResponseEntity<PersonResponseDTO> CreatePerson(PersonRequestDTO personRequestDTO);
+	ResponseEntity<PersonResponseDTO> CreatePerson(PersonRequestDTO personRequestDTO);
 	
 	@Operation(
 			summary = "Update person",
@@ -102,7 +102,7 @@ public interface PersonControllerOpenApi {
 				
 			}
 	)
-	public ResponseEntity<PersonResponseDTO> updatePerson(String id, PersonRequestDTO personRequestDTO);
+	ResponseEntity<PersonResponseDTO> updatePerson(String id, PersonRequestDTO personRequestDTO);
 	
 	@Operation(
 			summary = "Delete a Person",
@@ -123,5 +123,5 @@ public interface PersonControllerOpenApi {
 					@ApiResponse(description = "Internal Error", responseCode = "500", content = @Content())
 			}
 	)
-	public ResponseEntity<PersonResponseDTO> deletePerson(String id);
+	ResponseEntity<PersonResponseDTO> deletePerson(String id);
 }
