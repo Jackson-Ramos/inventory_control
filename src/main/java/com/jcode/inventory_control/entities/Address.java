@@ -49,7 +49,7 @@ public class Address implements Serializable {
 	@Column(name = "apartment", nullable = false)
 	private Integer apartment;
 	
-	@ManyToMany(mappedBy = "addresses")
+	@ManyToMany(mappedBy = "addresses", fetch = FetchType.EAGER)
 	@JsonIgnoreProperties("addresses")
 	private List<Product> products;
 	

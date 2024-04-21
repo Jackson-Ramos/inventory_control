@@ -15,14 +15,14 @@ import java.util.List;
 
 @Service
 public class PersonService {
-	
+
 	@Autowired
 	private final PersonRepository personRepository;
-	
+
 	public PersonService(PersonRepository personRepository) {
 		this.personRepository = personRepository;
 	}
-	
+
 	// Get All People
 	public ResponseEntity<List<PersonResponseDTO>> getAllPersons() {
 		var listOfPeople = Mapper.parseListObjects(
@@ -30,9 +30,9 @@ public class PersonService {
 		);
 		return ResponseEntity.status(HttpStatus.OK).body(listOfPeople);
 	}
-	
+
 	// Get One Person
-	public ResponseEntity<PersonResponseDTO> getOnePerson(String id) {
+	public ResponseEntity<PersonResponseDTO> getOnePerson(Integer id) {
 		var entity = personRepository.findById(id).orElseThrow(
 				() -> new ResourceNotFound("The Id: " + id + "Not Found")
 		);
@@ -40,42 +40,30 @@ public class PersonService {
 				Mapper.parseObject(entity, PersonResponseDTO.class)
 		);
 	}
-	
+
 	// Create new People
 	public ResponseEntity<PersonResponseDTO> createPerson(PersonRequestDTO personRequestDTO) {
-		Person person = new Person(
-				null,
-				personRequestDTO.getCode(),
-				personRequestDTO.getFirtName(),
-				personRequestDTO.getLastName(),
-				personRequestDTO.getPassword()
-		);
+		Person person = new Person(personRequestDTO);
 		personRepository.save(person);
 		return ResponseEntity.status(HttpStatus.CREATED).body(
 				Mapper.parseObject(person, PersonResponseDTO.class)
 		);
 	}
-	
+
 	// Update People
-	public ResponseEntity<PersonResponseDTO> updatePerson(String id, PersonRequestDTO personRequestDTO) {
+	public ResponseEntity<PersonResponseDTO> updatePerson(Integer id, PersonRequestDTO personRequestDTO) {
 		var entity = personRepository.findById(id).orElseThrow(
 				() -> new ResourceNotFound("The Id: " + id + "Not Found")
 		);
-		Person person = new Person(
-				null,
-				personRequestDTO.getCode(),
-				personRequestDTO.getFirtName(),
-				personRequestDTO.getLastName(),
-				personRequestDTO.getPassword()
-		);
+		Person person = new Person(personRequestDTO);
 		personRepository.save(person);
 		return ResponseEntity.status(HttpStatus.CREATED).body(
 				Mapper.parseObject(person, PersonResponseDTO.class)
 		);
 	}
-	
+
 	// Delete a Person
-	public ResponseEntity<PersonResponseDTO> deletePerson(String id){
+	public ResponseEntity<PersonResponseDTO> deletePerson(Integer id){
 		var entity = personRepository.findById(id).orElseThrow(
 				()-> new ResourceNotFound("The Id: " + id + "Not Found")
 		);

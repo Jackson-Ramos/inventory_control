@@ -13,8 +13,6 @@ public class PersonResponseDTO implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
-	private String id;
-	private Integer code;
-	private String firtName;
-	private String lastName;
+	private Integer id;
+	private String login;
 }

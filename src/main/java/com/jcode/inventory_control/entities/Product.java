@@ -35,7 +35,7 @@ public class Product implements Serializable {
 	@Column(name = "price", nullable = false)
 	private BigDecimal price;
 	
-	@ManyToMany()
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "products_addresses",
 			joinColumns = @JoinColumn(name = "product_id"),
 			inverseJoinColumns = @JoinColumn(name = "adress_id")

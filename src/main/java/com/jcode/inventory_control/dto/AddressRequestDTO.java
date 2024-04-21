@@ -15,7 +15,6 @@ public class AddressRequestDTO implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
-	private String id;
 	private Long code;
 	private Long amount;
 	private Integer stock;

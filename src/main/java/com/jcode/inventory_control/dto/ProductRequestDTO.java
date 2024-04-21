@@ -1,5 +1,6 @@
 package com.jcode.inventory_control.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,7 +16,6 @@ public class ProductRequestDTO implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
-	private String id;
 	private Long code;
 	private String name;
 	private BigDecimal price;

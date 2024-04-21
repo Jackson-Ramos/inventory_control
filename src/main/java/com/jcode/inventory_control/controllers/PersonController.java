@@ -15,27 +15,27 @@ import java.util.List;
 @RestController
 @RequestMapping("/person")
 public class PersonController implements PersonControllerOpenApi {
-	
+
 	private final PersonService personService;
-	
+
 	public PersonController(PersonService personService) {
 		this.personService = personService;
 	}
-	
+
 	@GetMapping(
 			produces = MediaType.APPLICATION_JSON_VALUE
 	)
 	public ResponseEntity<List<PersonResponseDTO>> getAllPersons() {
 		return personService.getAllPersons();
 	}
-	
+
 	@GetMapping(value = "/{id}",
 			produces = MediaType.APPLICATION_JSON_VALUE
 	)
-	public ResponseEntity<PersonResponseDTO> getOnePerson(@PathVariable String id) {
+	public ResponseEntity<PersonResponseDTO> getOnePerson(@PathVariable Integer id) {
 		return personService.getOnePerson(id);
 	}
-	
+
 	@PostMapping(
 			produces = MediaType.APPLICATION_JSON_VALUE,
 			consumes = MediaType.APPLICATION_JSON_VALUE
@@ -43,19 +43,19 @@ public class PersonController implements PersonControllerOpenApi {
 	public ResponseEntity<PersonResponseDTO> CreatePerson(@RequestBody PersonRequestDTO personRequestDTO) {
 		return personService.createPerson(personRequestDTO);
 	}
-	
+
 	@PutMapping(value = "/{id}",
 			consumes = MediaType.APPLICATION_JSON_VALUE,
 			produces = MediaType.APPLICATION_JSON_VALUE
 	)
-	public ResponseEntity<PersonResponseDTO> updatePerson(@PathVariable String id, @RequestBody PersonRequestDTO personRequestDTO) {
+	public ResponseEntity<PersonResponseDTO> updatePerson(@PathVariable Integer id, @RequestBody PersonRequestDTO personRequestDTO) {
 		return personService.updatePerson(id, personRequestDTO);
 	}
-	
+
 	@DeleteMapping(value = "/{id}",
 			produces = MediaType.APPLICATION_JSON_VALUE
 	)
-	public ResponseEntity<PersonResponseDTO> deletePerson(@PathVariable String id) {
+	public ResponseEntity<PersonResponseDTO> deletePerson(@PathVariable Integer id) {
 		return personService.deletePerson(id);
 	}
 }

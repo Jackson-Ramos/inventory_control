@@ -57,7 +57,7 @@ public interface PersonControllerOpenApi {
 					@ApiResponse(description = "Internal Error", responseCode = "500", content = @Content())
 			}
 	)
-	ResponseEntity<PersonResponseDTO> getOnePerson(String id);
+	ResponseEntity<PersonResponseDTO> getOnePerson(Integer id);
 	
 	@Operation(
 			summary = "adds a new Person",
@@ -102,7 +102,7 @@ public interface PersonControllerOpenApi {
 				
 			}
 	)
-	ResponseEntity<PersonResponseDTO> updatePerson(String id, PersonRequestDTO personRequestDTO);
+	ResponseEntity<PersonResponseDTO> updatePerson(Integer id, PersonRequestDTO personRequestDTO);
 	
 	@Operation(
 			summary = "Delete a Person",
@@ -123,5 +123,5 @@ public interface PersonControllerOpenApi {
 					@ApiResponse(description = "Internal Error", responseCode = "500", content = @Content())
 			}
 	)
-	ResponseEntity<PersonResponseDTO> deletePerson(String id);
+	ResponseEntity<PersonResponseDTO> deletePerson(Integer id);
 }

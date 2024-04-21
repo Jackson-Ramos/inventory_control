@@ -1,5 +1,6 @@
 package com.jcode.inventory_control.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.jcode.inventory_control.entities.Product;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -25,6 +26,7 @@ public class AddressResponseDTO implements Serializable {
 	private Integer building;
 	private Integer level;
 	private Integer apartment;
+	@JsonIgnoreProperties("addresses")
 	private List<Product> products;
 	
 }
