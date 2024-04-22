@@ -1,6 +1,6 @@
 package com.jcode.inventory_control.entities;
 
-import com.jcode.inventory_control.dto.PersonRequestDTO;
+import com.jcode.inventory_control.dto.UserRequestDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -18,15 +18,15 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "tb_person")
-public class Person implements UserDetails, Serializable {
+@Table(name = "tb_user")
+public class User implements UserDetails, Serializable {
 	
 	@Serial
 	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "person_id", nullable = false, unique = true)
+	@Column(name = "user_id", nullable = false, unique = true)
 	private Integer id;
 	
 	@Column(name = "login", nullable = false, unique = true)
@@ -50,7 +50,7 @@ public class Person implements UserDetails, Serializable {
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(
 			name = "person_permission",
-			joinColumns = @JoinColumn(name = "person_id"),
+			joinColumns = @JoinColumn(name = "user_id"),
 			inverseJoinColumns = @JoinColumn(name = "permission_id")
 	)
 	private List<Permission> permissions;
@@ -94,12 +94,12 @@ public class Person implements UserDetails, Serializable {
 		return this.enabled;
 	}
 	
-	public Person(PersonRequestDTO personRequestDTO) {
-		this.login = personRequestDTO.getLogin();
-		this.password = personRequestDTO.getPassword();
-		this.accountNonExpired = personRequestDTO.getAccountNonExpired();
-		this.accountNonLocked = personRequestDTO.getAccountNonLocked();
-		this.accountCredentialsNonExpired = personRequestDTO.getAccountCredentialsNonExpired();
-		this.enabled = personRequestDTO.getEnabled();
+	public User(UserRequestDTO userRequestDTO) {
+		this.login = userRequestDTO.getLogin();
+		this.password = userRequestDTO.getPassword();
+		this.accountNonExpired = userRequestDTO.getAccountNonExpired();
+		this.accountNonLocked = userRequestDTO.getAccountNonLocked();
+		this.accountCredentialsNonExpired = userRequestDTO.getAccountCredentialsNonExpired();
+		this.enabled = userRequestDTO.getEnabled();
 	}
 }

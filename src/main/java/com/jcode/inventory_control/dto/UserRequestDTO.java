@@ -9,10 +9,15 @@ import java.io.Serializable;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class PersonResponseDTO implements Serializable {
+public class UserRequestDTO implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
-	private Integer id;
 	private String login;
+	private String password;
+	private Boolean accountNonExpired;
+	private Boolean accountNonLocked;
+	private Boolean accountCredentialsNonExpired;
+	private Boolean enabled;
+	
 }

@@ -1,7 +1,7 @@
 package com.jcode.inventory_control.openapi;
 
-import com.jcode.inventory_control.dto.PersonRequestDTO;
-import com.jcode.inventory_control.dto.PersonResponseDTO;
+import com.jcode.inventory_control.dto.UserRequestDTO;
+import com.jcode.inventory_control.dto.UserResponseDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -12,20 +12,20 @@ import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 
-@Tag(name = "People", description = "Product-related methods")
-public interface PersonControllerOpenApi {
+@Tag(name = "User", description = "Product-related methods")
+public interface UserControllerOpenApi {
 	
 	@Operation(
-			summary = "Finds a People",
-			description = "search for all people",
-			tags = {"People"},
+			summary = "Finds a User",
+			description = "search for all User",
+			tags = {"User"},
 			responses = {
 					@ApiResponse(
 							description = "Success",
 							responseCode = "200",
 							content = @Content(
 									mediaType = "application/json",
-									array = @ArraySchema(schema = @Schema(implementation = PersonResponseDTO.class))
+									array = @ArraySchema(schema = @Schema(implementation = UserResponseDTO.class))
 							)
 					),
 					@ApiResponse(description = "Bad Request", responseCode = "400", content = @Content()),
@@ -35,19 +35,19 @@ public interface PersonControllerOpenApi {
 					@ApiResponse(description = "Internal Error", responseCode = "500", content = @Content)
 			}
 	)
-	ResponseEntity<List<PersonResponseDTO>> getAllPersons();
+	ResponseEntity<List<UserResponseDTO>> getAllPersons();
 	
 	@Operation(
-			summary = "Get one Person",
+			summary = "Get one User",
 			description = "Gets a user based on the ID entered by the user",
-			tags = {"People"},
+			tags = {"User"},
 			responses = {
 					@ApiResponse(
 							description = "Success",
 							responseCode = "200",
 							content = @Content(
 									mediaType = "application/json",
-									schema = @Schema(implementation = PersonResponseDTO.class)
+									schema = @Schema(implementation = UserResponseDTO.class)
 							)
 					),
 					@ApiResponse(description = "Bad Request", responseCode = "400", content = @Content()),
@@ -57,19 +57,19 @@ public interface PersonControllerOpenApi {
 					@ApiResponse(description = "Internal Error", responseCode = "500", content = @Content())
 			}
 	)
-	ResponseEntity<PersonResponseDTO> getOnePerson(Integer id);
+	ResponseEntity<UserResponseDTO> getOnePerson(Integer id);
 	
 	@Operation(
-			summary = "adds a new Person",
-			description = "Adds a new products by passing in a JSON",
-			tags = {"People"},
+			summary = "adds a new User",
+			description = "Adds a new User by passing in a JSON",
+			tags = {"User"},
 			responses = {
 					@ApiResponse(
 							description = "Created",
 							responseCode = "201",
 							content = @Content(
 									mediaType = "Application/json",
-									schema = @Schema(implementation = PersonResponseDTO.class)
+									schema = @Schema(implementation = UserResponseDTO.class)
 							)
 					),
 					@ApiResponse(description = "Bad Request", responseCode = "400", content = @Content()),
@@ -79,19 +79,19 @@ public interface PersonControllerOpenApi {
 					@ApiResponse(description = "Internal Error", responseCode = "500", content = @Content())
 			}
 	)
-	ResponseEntity<PersonResponseDTO> CreatePerson(PersonRequestDTO personRequestDTO);
+	ResponseEntity<UserResponseDTO> CreatePerson(UserRequestDTO userRequestDTO);
 	
 	@Operation(
-			summary = "Update person",
-			description = "update an existing person by passing a JSON",
-			tags = {"People"},
+			summary = "Update User",
+			description = "update an existing User by passing a JSON",
+			tags = {"User"},
 			responses = {
 					@ApiResponse(
 							description = "Success",
 							responseCode = "200",
 							content = @Content(
 									mediaType = "Application/json",
-									schema = @Schema(implementation = PersonResponseDTO.class)
+									schema = @Schema(implementation = UserResponseDTO.class)
 							)
 					),
 					@ApiResponse(description = "Bad Request", responseCode = "400", content = @Content()),
@@ -102,19 +102,19 @@ public interface PersonControllerOpenApi {
 				
 			}
 	)
-	ResponseEntity<PersonResponseDTO> updatePerson(Integer id, PersonRequestDTO personRequestDTO);
+	ResponseEntity<UserResponseDTO> updatePerson(Integer id, UserRequestDTO userRequestDTO);
 	
 	@Operation(
 			summary = "Delete a Person",
-			description = "delete a person based on passed ID",
-			tags = {"People"},
+			description = "delete a User based on passed ID",
+			tags = {"User"},
 			responses = {
 					@ApiResponse(
 							description = "Success",
 							responseCode = "200",
 							content = @Content(
 									mediaType = "Application/json",
-									schema = @Schema(implementation = PersonResponseDTO.class)
+									schema = @Schema(implementation = UserResponseDTO.class)
 							)
 					),
 					@ApiResponse(description = "Unauthorized", responseCode = "401", content = @Content()),
@@ -123,5 +123,5 @@ public interface PersonControllerOpenApi {
 					@ApiResponse(description = "Internal Error", responseCode = "500", content = @Content())
 			}
 	)
-	ResponseEntity<PersonResponseDTO> deletePerson(Integer id);
+	ResponseEntity<UserResponseDTO> deletePerson(Integer id);
 }

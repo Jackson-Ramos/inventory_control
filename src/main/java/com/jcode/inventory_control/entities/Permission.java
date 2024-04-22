@@ -27,7 +27,7 @@ public class Permission implements GrantedAuthority, Serializable {
 	private String description;
 	
 	@ManyToMany(mappedBy = "permissions")
-	private List<Person> personList;
+	private List<User> userList;
 	
 	@Override
 	public String getAuthority() {
