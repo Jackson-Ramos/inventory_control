@@ -1,7 +1,7 @@
 package com.jcode.inventory_control.openapi;
 
-import com.jcode.inventory_control.dto.UserRequestDTO;
-import com.jcode.inventory_control.dto.UserResponseDTO;
+import com.jcode.inventory_control.dto.security.accountCredentials;
+import com.jcode.inventory_control.dto.security.TokenDto;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -25,7 +25,7 @@ public interface UserControllerOpenApi {
 							responseCode = "200",
 							content = @Content(
 									mediaType = "application/json",
-									array = @ArraySchema(schema = @Schema(implementation = UserResponseDTO.class))
+									array = @ArraySchema(schema = @Schema(implementation = TokenDto.class))
 							)
 					),
 					@ApiResponse(description = "Bad Request", responseCode = "400", content = @Content()),
@@ -35,7 +35,7 @@ public interface UserControllerOpenApi {
 					@ApiResponse(description = "Internal Error", responseCode = "500", content = @Content)
 			}
 	)
-	ResponseEntity<List<UserResponseDTO>> getAllPersons();
+	ResponseEntity<List<TokenDto>> getAllPersons();
 	
 	@Operation(
 			summary = "Get one User",
@@ -47,7 +47,7 @@ public interface UserControllerOpenApi {
 							responseCode = "200",
 							content = @Content(
 									mediaType = "application/json",
-									schema = @Schema(implementation = UserResponseDTO.class)
+									schema = @Schema(implementation = TokenDto.class)
 							)
 					),
 					@ApiResponse(description = "Bad Request", responseCode = "400", content = @Content()),
@@ -57,7 +57,7 @@ public interface UserControllerOpenApi {
 					@ApiResponse(description = "Internal Error", responseCode = "500", content = @Content())
 			}
 	)
-	ResponseEntity<UserResponseDTO> getOnePerson(Integer id);
+	ResponseEntity<TokenDto> getOnePerson(Integer id);
 	
 	@Operation(
 			summary = "adds a new User",
@@ -69,7 +69,7 @@ public interface UserControllerOpenApi {
 							responseCode = "201",
 							content = @Content(
 									mediaType = "Application/json",
-									schema = @Schema(implementation = UserResponseDTO.class)
+									schema = @Schema(implementation = TokenDto.class)
 							)
 					),
 					@ApiResponse(description = "Bad Request", responseCode = "400", content = @Content()),
@@ -79,7 +79,7 @@ public interface UserControllerOpenApi {
 					@ApiResponse(description = "Internal Error", responseCode = "500", content = @Content())
 			}
 	)
-	ResponseEntity<UserResponseDTO> CreatePerson(UserRequestDTO userRequestDTO);
+	ResponseEntity<TokenDto> CreatePerson(accountCredentials accountCredentials);
 	
 	@Operation(
 			summary = "Update User",
@@ -91,7 +91,7 @@ public interface UserControllerOpenApi {
 							responseCode = "200",
 							content = @Content(
 									mediaType = "Application/json",
-									schema = @Schema(implementation = UserResponseDTO.class)
+									schema = @Schema(implementation = TokenDto.class)
 							)
 					),
 					@ApiResponse(description = "Bad Request", responseCode = "400", content = @Content()),
@@ -102,7 +102,7 @@ public interface UserControllerOpenApi {
 				
 			}
 	)
-	ResponseEntity<UserResponseDTO> updatePerson(Integer id, UserRequestDTO userRequestDTO);
+	ResponseEntity<TokenDto> updatePerson(Integer id, accountCredentials accountCredentials);
 	
 	@Operation(
 			summary = "Delete a Person",
@@ -114,7 +114,7 @@ public interface UserControllerOpenApi {
 							responseCode = "200",
 							content = @Content(
 									mediaType = "Application/json",
-									schema = @Schema(implementation = UserResponseDTO.class)
+									schema = @Schema(implementation = TokenDto.class)
 							)
 					),
 					@ApiResponse(description = "Unauthorized", responseCode = "401", content = @Content()),
@@ -123,5 +123,5 @@ public interface UserControllerOpenApi {
 					@ApiResponse(description = "Internal Error", responseCode = "500", content = @Content())
 			}
 	)
-	ResponseEntity<UserResponseDTO> deletePerson(Integer id);
+	ResponseEntity<TokenDto> deletePerson(Integer id);
 }

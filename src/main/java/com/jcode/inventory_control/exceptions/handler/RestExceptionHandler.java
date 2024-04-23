@@ -1,6 +1,7 @@
 package com.jcode.inventory_control.exceptions.handler;
 
 import com.jcode.inventory_control.exceptions.ExceptionResponse;
+import com.jcode.inventory_control.exceptions.InvalidJwtAuthenticationException;
 import com.jcode.inventory_control.exceptions.ResourceNotFound;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,5 +31,15 @@ public class RestExceptionHandler {
 				webRequest.getDescription(false)
 		);
 		return new ResponseEntity<>(exceptionResponse, HttpStatus.NOT_FOUND);
+	}
+	
+	@ExceptionHandler(InvalidJwtAuthenticationException.class)
+	public final ResponseEntity<ExceptionResponse> handleInvalidJwtAutentication(Exception exception, WebRequest webRequest) {
+		ExceptionResponse exceptionResponse = new ExceptionResponse(
+				new Date(),
+				exception.getMessage(),
+				webRequest.getDescription(false)
+		);
+		return new ResponseEntity<>(exceptionResponse, HttpStatus.UNAUTHORIZED);
 	}
 }

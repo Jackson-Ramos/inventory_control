@@ -1,7 +1,7 @@
 package com.jcode.inventory_control.controllers;
 
-import com.jcode.inventory_control.dto.UserRequestDTO;
-import com.jcode.inventory_control.dto.UserResponseDTO;
+import com.jcode.inventory_control.dto.security.accountCredentials;
+import com.jcode.inventory_control.dto.security.TokenDto;
 import com.jcode.inventory_control.openapi.UserControllerOpenApi;
 import com.jcode.inventory_control.services.UserService;
 import org.springframework.http.MediaType;
@@ -25,14 +25,14 @@ public class UserController implements UserControllerOpenApi {
 	@GetMapping(
 			produces = MediaType.APPLICATION_JSON_VALUE
 	)
-	public ResponseEntity<List<UserResponseDTO>> getAllPersons() {
+	public ResponseEntity<List<TokenDto>> getAllPersons() {
 		return userService.getAllPersons();
 	}
 
 	@GetMapping(value = "/{id}",
 			produces = MediaType.APPLICATION_JSON_VALUE
 	)
-	public ResponseEntity<UserResponseDTO> getOnePerson(@PathVariable Integer id) {
+	public ResponseEntity<TokenDto> getOnePerson(@PathVariable Integer id) {
 		return userService.getOnePerson(id);
 	}
 
@@ -40,22 +40,22 @@ public class UserController implements UserControllerOpenApi {
 			produces = MediaType.APPLICATION_JSON_VALUE,
 			consumes = MediaType.APPLICATION_JSON_VALUE
 	)
-	public ResponseEntity<UserResponseDTO> CreatePerson(@RequestBody UserRequestDTO userRequestDTO) {
-		return userService.createPerson(userRequestDTO);
+	public ResponseEntity<TokenDto> CreatePerson(@RequestBody accountCredentials accountCredentials) {
+		return userService.createPerson(accountCredentials);
 	}
 
 	@PutMapping(value = "/{id}",
 			consumes = MediaType.APPLICATION_JSON_VALUE,
 			produces = MediaType.APPLICATION_JSON_VALUE
 	)
-	public ResponseEntity<UserResponseDTO> updatePerson(@PathVariable Integer id, @RequestBody UserRequestDTO userRequestDTO) {
-		return userService.updatePerson(id, userRequestDTO);
+	public ResponseEntity<TokenDto> updatePerson(@PathVariable Integer id, @RequestBody accountCredentials accountCredentials) {
+		return userService.updatePerson(id, accountCredentials);
 	}
 
 	@DeleteMapping(value = "/{id}",
 			produces = MediaType.APPLICATION_JSON_VALUE
 	)
-	public ResponseEntity<UserResponseDTO> deletePerson(@PathVariable Integer id) {
+	public ResponseEntity<TokenDto> deletePerson(@PathVariable Integer id) {
 		return userService.deletePerson(id);
 	}
 }

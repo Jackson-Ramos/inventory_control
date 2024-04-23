@@ -1,7 +1,7 @@
 package com.jcode.inventory_control.services;
 
-import com.jcode.inventory_control.dto.UserRequestDTO;
-import com.jcode.inventory_control.dto.UserResponseDTO;
+import com.jcode.inventory_control.dto.security.accountCredentials;
+import com.jcode.inventory_control.dto.security.TokenDto;
 import com.jcode.inventory_control.entities.User;
 import com.jcode.inventory_control.exceptions.ResourceNotFound;
 import com.jcode.inventory_control.mapper.Mapper;
@@ -26,38 +26,38 @@ public class UserService implements UserDetailsService {
 		this.userRepository = userRepository;
 	}
 
-	public ResponseEntity<List<UserResponseDTO>> getAllPersons() {
+	public ResponseEntity<List<TokenDto>> getAllPersons() {
 		var listOfPeople = Mapper.parseListObjects(
-				userRepository.findAll(), UserResponseDTO.class
+				userRepository.findAll(), TokenDto.class
 		);
 		return ResponseEntity.status(HttpStatus.OK).body(listOfPeople);
 	}
 
-	public ResponseEntity<UserResponseDTO> getOnePerson(Integer id) {
+	public ResponseEntity<TokenDto> getOnePerson(Integer id) {
 		var entity = userRepository.findById(id).orElseThrow(
 				() -> new ResourceNotFound("The Id: " + id + "Not Found")
 		);
 		return ResponseEntity.status(HttpStatus.OK).body(
-				Mapper.parseObject(entity, UserResponseDTO.class)
+				Mapper.parseObject(entity, TokenDto.class)
 		);
 	}
 
-	public ResponseEntity<UserResponseDTO> createPerson(UserRequestDTO userRequestDTO) {
-		User user = new User(userRequestDTO);
+	public ResponseEntity<TokenDto> createPerson(accountCredentials accountCredentials) {
+		User user = new User(accountCredentials);
 		userRepository.save(user);
 		return ResponseEntity.status(HttpStatus.CREATED).build();
 	}
 
-	public ResponseEntity updatePerson(Integer id, UserRequestDTO userRequestDTO) {
+	public ResponseEntity updatePerson(Integer id, accountCredentials accountCredentials) {
 		var entity = userRepository.findById(id).orElseThrow(
 				() -> new ResourceNotFound("The Id: " + id + "Not Found")
 		);
-		User user = new User(userRequestDTO);
+		User user = new User(accountCredentials);
 		userRepository.save(user);
 		return ResponseEntity.status(HttpStatus.CREATED).build();
 	}
 
-	public ResponseEntity<UserResponseDTO> deletePerson(Integer id){
+	public ResponseEntity<TokenDto> deletePerson(Integer id){
 		var entity = userRepository.findById(id).orElseThrow(
 				()-> new ResourceNotFound("The Id: " + id + "Not Found")
 		);
@@ -67,7 +67,7 @@ public class UserService implements UserDetailsService {
 	
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		var person = userRepository.findByUserName(username);
+		var person = userRepository.findBylogin(username);
 		if (person == null) {
 			return person;
 		}

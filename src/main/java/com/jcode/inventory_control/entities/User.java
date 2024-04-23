@@ -1,6 +1,6 @@
 package com.jcode.inventory_control.entities;
 
-import com.jcode.inventory_control.dto.UserRequestDTO;
+import com.jcode.inventory_control.dto.security.accountCredentials;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -94,12 +94,12 @@ public class User implements UserDetails, Serializable {
 		return this.enabled;
 	}
 	
-	public User(UserRequestDTO userRequestDTO) {
-		this.login = userRequestDTO.getLogin();
-		this.password = userRequestDTO.getPassword();
-		this.accountNonExpired = userRequestDTO.getAccountNonExpired();
-		this.accountNonLocked = userRequestDTO.getAccountNonLocked();
-		this.accountCredentialsNonExpired = userRequestDTO.getAccountCredentialsNonExpired();
-		this.enabled = userRequestDTO.getEnabled();
+	public User(accountCredentials accountCredentials) {
+		this.login = accountCredentials.getLogin();
+		this.password = accountCredentials.getPassword();
+		this.accountNonExpired = accountCredentials.getAccountNonExpired();
+		this.accountNonLocked = accountCredentials.getAccountNonLocked();
+		this.accountCredentialsNonExpired = accountCredentials.getAccountCredentialsNonExpired();
+		this.enabled = accountCredentials.getEnabled();
 	}
 }
