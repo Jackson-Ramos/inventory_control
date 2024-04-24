@@ -97,9 +97,6 @@ public class User implements UserDetails, Serializable {
 	public User(accountCredentials accountCredentials) {
 		this.login = accountCredentials.getLogin();
 		this.password = accountCredentials.getPassword();
-		this.accountNonExpired = accountCredentials.getAccountNonExpired();
-		this.accountNonLocked = accountCredentials.getAccountNonLocked();
-		this.accountCredentialsNonExpired = accountCredentials.getAccountCredentialsNonExpired();
-		this.enabled = accountCredentials.getEnabled();
+		
 	}
 }
