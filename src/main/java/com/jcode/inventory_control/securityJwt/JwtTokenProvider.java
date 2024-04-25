@@ -1,5 +1,6 @@
 package com.jcode.inventory_control.securityJwt;
 
+import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.jcode.inventory_control.dto.security.TokenDto;
 import jakarta.annotation.PostConstruct;
@@ -7,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.util.Base64;
 import java.util.Date;
@@ -27,24 +29,42 @@ public class JwtTokenProvider {
 	Algorithm algorithm = null;
 	
 	@PostConstruct
-	protected void init(){
+	protected void init() {
 		secretKey = Base64.getEncoder().encodeToString(secretKey.getBytes());
 		algorithm = Algorithm.HMAC256(secretKey.getBytes());
 	}
 	
-	public TokenDto createAccessToken(String loing, List<String> roles){
+	public TokenDto createAccessToken(String loing, List<String> roles) {
 		Date now = new Date();
 		Date validity = new Date(now.getTime() + validityMilliseconds);
 		var accessToken = getAccessToken(loing, roles, now, validity);
 		var refreshToken = getRefreshToken(loing, roles, now);
-		return new TokenDto(loing, true, now, validity, accessToken,refreshToken);
+		return new TokenDto(loing, true, now, validity, accessToken, refreshToken);
 	}
 	
-	private String getAccessToken(String loing, List<String> roles, Date now, Date validity) {
-		return null;
+	private String getAccessToken(String login, List<String> roles, Date now, Date validity) {
+		String issuerUrl = ServletUriComponentsBuilder
+				.fromCurrentContextPath()
+				.build()
+				.toString();
+		return JWT.create()
+				.withClaim("roles", roles)
+				.withIssuedAt(now)
+				.withExpiresAt(validity)
+				.withSubject(login)
+				.withIssuer(issuerUrl)
+				.sign(algorithm)
+				.strip();
 	}
 	
-	private String getRefreshToken(String loing, List<String> roles, Date now) {
-		return null;
+	private String getRefreshToken(String login, List<String> roles, Date now) {
+		Date validityRefreshToken = new Date(now.getTime() + (validityMilliseconds * 3));
+		return JWT.create()
+				.withClaim("roles", roles)
+				.withIssuedAt(now)
+				.withExpiresAt(validityRefreshToken)
+				.withSubject(login)
+				.sign(algorithm)
+				.strip();
 	}
 }
