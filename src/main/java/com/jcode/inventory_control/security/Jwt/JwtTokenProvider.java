@@ -1,4 +1,4 @@
-package com.jcode.inventory_control.securityJwt;
+package com.jcode.inventory_control.security.Jwt;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
