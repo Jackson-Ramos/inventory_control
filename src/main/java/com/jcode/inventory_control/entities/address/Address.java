@@ -1,6 +1,7 @@
-package com.jcode.inventory_control.entities;
+package com.jcode.inventory_control.entities.address;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.jcode.inventory_control.entities.product.Product;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,47 +15,24 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "tb_Address")
+@Table(name = "address")
 public class Address implements Serializable {
 	
 	@Serial
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.UUID)
-	@Column(name = "adress_id")
-	private String id;
-	
-	@Column(name = "address_code", unique = true, nullable = false)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long code;
-	
-	@Column(name = "amount", nullable = false)
-	private Long amount;
-	
-	@Column(name = "stock", nullable = false)
 	private Integer stock;
-	
-	@Column(name = "deposit", nullable = false)
 	private Integer deposit;
-	
-	@Column(name = "read", nullable = false)
-	private Integer read;
-	
-	@Column(name = "building", nullable = false)
 	private Integer building;
-	
-	@Column(name = "level", nullable = false)
+	private Long road;
 	private Integer level;
-	
-	@Column(name = "apartment", nullable = false)
 	private Integer apartment;
 	
 	@ManyToMany(mappedBy = "addresses", fetch = FetchType.EAGER)
 	@JsonIgnoreProperties("addresses")
 	private List<Product> products;
-	
-	public void addProduct(Product product) {
-		this.products.add(product);
-	}
 	
 }

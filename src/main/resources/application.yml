@@ -2,26 +2,28 @@
 security:
   jwt:
     token:
-#      chave secreta
       secret-key: 53cr37
-#      expiração do token em mile segundos
       expire-lenght: 3600000
 
-#      configuração do banco de dados
+#  configuração do banco de dados
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/dep
-    username: postgres
+    url: jdbc:postgresql://localhost:5432/inventory_database
+    username: admin
     password: root
+
+#  configuração JPA
   jpa:
     open-in-view: true
     hibernate:
-      ddl-auto: none
+      ddl-auto: update
       properties:
         hibernate:
           dialect: org.hibernate.dialect.PostgreSQL81Dialect
     show-sql: false
+
+# configuração swagger
   springdoc:
     pathsToMatch: /person/**
     swagger-ui:

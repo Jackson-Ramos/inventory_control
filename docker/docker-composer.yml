@@ -1,0 +1,15 @@
+services:
+  postgres-inventory_control:
+    image: postgres:latest
+    container_name: postgres-container-inventory
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: inventory_database
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data-inventory:/var/lib/postgresql/data
+
+volumes:
+  postgres-data-inventory:

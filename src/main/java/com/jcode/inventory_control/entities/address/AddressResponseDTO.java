@@ -1,7 +1,7 @@
-package com.jcode.inventory_control.dto;
+package com.jcode.inventory_control.entities.address;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.jcode.inventory_control.entities.Product;
+import com.jcode.inventory_control.entities.product.Product;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

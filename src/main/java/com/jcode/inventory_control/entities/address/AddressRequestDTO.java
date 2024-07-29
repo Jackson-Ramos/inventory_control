@@ -1,4 +1,4 @@
-package com.jcode.inventory_control.dto;
+package com.jcode.inventory_control.entities.address;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
