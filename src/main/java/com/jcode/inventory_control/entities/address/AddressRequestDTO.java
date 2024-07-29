@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.List;
 
@@ -13,7 +14,8 @@ import java.util.List;
 
 public class AddressRequestDTO implements Serializable {
 	
-	private static final long serialVersionUID = 1L;
+	@Serial
+	private static final long serialVersionUID = 4150272185461983514L;
 	
 	private Long code;
 	private Long amount;

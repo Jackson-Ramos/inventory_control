@@ -13,7 +13,7 @@ import java.io.Serializable;
 @Setter
 @EqualsAndHashCode
 @Entity
-@Table(name = "bar_code")
+@Table(name = "barcodes")
 public class BarCode implements Serializable {
 
     @Serial

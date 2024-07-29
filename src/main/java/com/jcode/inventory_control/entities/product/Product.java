@@ -17,7 +17,7 @@ import java.util.Set;
 @Getter
 @Setter
 @Entity()
-@Table(name = "tb_products")
+@Table(name = "products")
 public class Product implements Serializable {
 
     @Serial

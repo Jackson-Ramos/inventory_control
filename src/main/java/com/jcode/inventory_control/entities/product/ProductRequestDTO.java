@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.List;
@@ -13,7 +14,8 @@ import java.util.List;
 @AllArgsConstructor
 public class ProductRequestDTO implements Serializable {
 	
-	private static final long serialVersionUID = 1L;
+	@Serial
+	private static final long serialVersionUID = 2560776881501777379L;
 	
 	private Long code;
 	private String name;
