@@ -2,6 +2,7 @@ package com.jcode.inventory_control.entities.address;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.jcode.inventory_control.entities.product.Product;
+import com.jcode.inventory_control.entities.productaddress.ProductAddress;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -10,6 +11,7 @@ import lombok.NoArgsConstructor;
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.List;
+import java.util.Set;
 
 @Data
 @AllArgsConstructor
@@ -30,9 +32,8 @@ public class Address implements Serializable {
 	private Long road;
 	private Integer level;
 	private Integer apartment;
-	
-	@ManyToMany(mappedBy = "addresses", fetch = FetchType.EAGER)
-	@JsonIgnoreProperties("addresses")
-	private List<Product> products;
+
+	@OneToMany(mappedBy = "address", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private Set<ProductAddress> productAddresses;
 	
 }

@@ -17,21 +17,22 @@ import java.util.Set;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
 @Table(name = "users")
+@Entity
 public class User implements UserDetails, Serializable {
 
     @Serial
     private static final long serialVersionUID = 6024454717245642172L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private String id;
 
     private String login;
 
     private String password;
 
+    @Enumerated(EnumType.STRING)
     private Permission permissions;
 
 
