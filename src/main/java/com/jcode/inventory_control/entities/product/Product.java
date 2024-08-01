@@ -28,8 +28,9 @@ public class Product implements Serializable {
     private String name;
     private String description;
     private BigDecimal price;
+    private String imgUrl;
 
-    @Enumerated(EnumType.STRING)
+   @Convert(converter = CategoryConverter.class)
     private Category category;
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
