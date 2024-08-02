@@ -29,6 +29,7 @@ public class Product implements Serializable {
     private String description;
     private BigDecimal price;
     private String imgUrl;
+    private Boolean blocked;
 
    @Convert(converter = CategoryConverter.class)
     private Category category;
