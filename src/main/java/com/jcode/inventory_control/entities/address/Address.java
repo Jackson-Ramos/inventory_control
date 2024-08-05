@@ -14,14 +14,16 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "address")
+@Table(name = "address", uniqueConstraints = {
+        @UniqueConstraint(columnNames = {"stock", "deposit", "building", "road", "level", "apartment"}) // TODO: NÃO FUNCIONA
+})
 public class Address implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 2645380758571467850L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long code;
     private Long stock;
     private Long deposit;

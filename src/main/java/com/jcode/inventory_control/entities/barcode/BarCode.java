@@ -20,7 +20,7 @@ public class BarCode implements Serializable {
     private static final long serialVersionUID = -1631476879542755597L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String barcode;
     private Integer quantity;

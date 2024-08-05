@@ -1,10 +1,10 @@
 CREATE TABLE address
 (
     code      BIGSERIAL PRIMARY KEY,
-    stock     INTEGER,
-    deposit   INTEGER,
-    building  INTEGER,
+    stock     BIGINT,
+    deposit   BIGINT,
+    building  BIGINT,
     road      BIGINT,
-    level     INTEGER,
-    apartment INTEGER
+    level     BIGINT,
+    apartment BIGINT
 );

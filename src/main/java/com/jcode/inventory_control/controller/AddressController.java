@@ -3,6 +3,7 @@ package com.jcode.inventory_control.controller;
 import com.jcode.inventory_control.entities.address.Address;
 import com.jcode.inventory_control.entities.address.AddressRequestDTO;
 import com.jcode.inventory_control.service.AddressService;
+import jakarta.validation.Valid;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,7 +23,7 @@ public class AddressController {
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE
     )
-    public ResponseEntity<Address> saveAddress(@RequestBody AddressRequestDTO data) {
+    public ResponseEntity<Void> saveAddress(@RequestBody @Valid AddressRequestDTO data) {
         return addressService.save(data);
     }
 
