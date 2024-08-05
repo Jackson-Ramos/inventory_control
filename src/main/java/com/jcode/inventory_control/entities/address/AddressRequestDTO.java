@@ -1,5 +1,6 @@
 package com.jcode.inventory_control.entities.address;
 
+import com.jcode.inventory_control.entities.productaddress.ProductAddress;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -7,6 +8,7 @@ import lombok.NoArgsConstructor;
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.List;
+import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -16,15 +18,12 @@ public class AddressRequestDTO implements Serializable {
 	
 	@Serial
 	private static final long serialVersionUID = 4150272185461983514L;
-	
-	private Long code;
-	private Long amount;
-	private Integer stock;
-	private Integer deposit;
-	private Integer read;
-	private Integer building;
-	private Integer level;
-	private Integer apartment;
-	private List<String> productIds;
-	
+
+	private Long stock;
+	private Long deposit;
+	private Long building;
+	private Long road;
+	private Long level;
+	private Long apartment;
+	private Set<ProductAddress> productAddresses;
 }
