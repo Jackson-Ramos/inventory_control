@@ -25,6 +25,14 @@ public class AddressService {
         return ResponseEntity.ok(new HashSet<>(addressRepository.findAll()));
     }
 
+    public ResponseEntity<Address> findById(Long id) {
+        Optional<Address> address = addressRepository.findById(id);
+        if (address.isPresent()) {
+            return ResponseEntity.ok(address.get());
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
     @Transactional
     public ResponseEntity<Void> save(AddressRequestDTO data) {
 
@@ -47,5 +55,35 @@ public class AddressService {
 
         addressRepository.save(address);
         return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
+    public ResponseEntity<Void> deleteById(Long id) {
+
+        Optional<Address> address = addressRepository.findById(id);
+        if (address.isPresent()) {
+            addressRepository.delete(address.get());
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.notFound().build();
+    }
+
+    @Transactional
+    public ResponseEntity<Void> update(Long code, AddressRequestDTO data) {
+
+        Optional<Address> address = addressRepository.findById(code);
+
+        if (address.isPresent()) {
+
+            address.get().setStock(data.getStock() != null ? data.getStock() : address.get().getStock());
+            address.get().setDeposit(data.getDeposit() != null ? data.getDeposit() : address.get().getDeposit());
+            address.get().setBuilding(data.getBuilding() != null ? data.getBuilding() : address.get().getBuilding());
+            address.get().setRoad(data.getRoad() != null ? data.getRoad() : address.get().getRoad());
+            address.get().setLevel(data.getLevel() != null ? data.getLevel() : address.get().getLevel());
+            address.get().setApartment(data.getApartment() != null ? data.getApartment() : address.get().getApartment());
+
+            addressRepository.save(address.get());
+            return ResponseEntity.ok().build();
+        }
+        return ResponseEntity.notFound().build();
     }
 }

@@ -31,4 +31,11 @@ public class AddressController {
     public ResponseEntity<Set<Address>> getAllAddresses() {
         return addressService.findAll();
     }
+
+    @GetMapping("/{code}")
+    public ResponseEntity<Address> getAddressById(@PathVariable Long code) {
+        return addressService.findById(code);
+    }
+
+
 }
