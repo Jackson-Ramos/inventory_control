@@ -1,0 +1,1 @@
+ALTER TABLE address ADD CONSTRAINT unique_address UNIQUE (stock, deposit, building, road, level, apartment)
