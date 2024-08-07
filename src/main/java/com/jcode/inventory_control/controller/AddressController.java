@@ -37,5 +37,13 @@ public class AddressController {
         return addressService.findById(code);
     }
 
+    @DeleteMapping("/{code}")
+    public ResponseEntity<Void> deleteAddress(@PathVariable Long code) {
+        return addressService.deleteById(code);
+    }
 
+    @PutMapping("/{code}")
+    public ResponseEntity<Void> updateAddress(@PathVariable Long code,@RequestBody @Valid AddressRequestDTO data) {
+        return addressService.update(code,data);
+    }
 }

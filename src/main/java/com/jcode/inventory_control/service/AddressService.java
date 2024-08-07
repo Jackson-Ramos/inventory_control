@@ -30,7 +30,7 @@ public class AddressService {
         if (address.isPresent()) {
             return ResponseEntity.ok(address.get());
         }
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        throw new IllegalArgumentException("Address already exists");
     }
 
     @Transactional
@@ -64,11 +64,16 @@ public class AddressService {
             addressRepository.delete(address.get());
             return ResponseEntity.noContent().build();
         }
-        return ResponseEntity.notFound().build();
+        throw new IllegalArgumentException("Address does not exist");
     }
 
     @Transactional
     public ResponseEntity<Void> update(Long code, AddressRequestDTO data) {
+
+        Optional<Address> existingAddress =
+                addressRepository.findByDuplicateAddress(data.getStock(), data.getDeposit(), data.getBuilding(), data.getRoad(), data.getLevel(), data.getApartment());
+
+        if (existingAddress.isPresent()) throw new IllegalArgumentException("Address already exists");
 
         Optional<Address> address = addressRepository.findById(code);
 
