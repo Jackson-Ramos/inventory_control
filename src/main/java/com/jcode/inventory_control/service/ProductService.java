@@ -37,5 +37,6 @@ public class ProductService {
         product.setImgUrl(data.getImgUrl());
         product.setBlocked(false);
         product.getCategory(data.getCategory());
+
     }
 }

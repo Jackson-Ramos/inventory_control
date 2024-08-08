@@ -31,7 +31,7 @@ public class ProductRequestDTO implements Serializable {
 	private @NotNull BigDecimal price;
 	private String imgUrl;
 	@Convert(converter = CategoryConverter.class)
-	private @NotBlank Category category;
+	private @NotBlank String category;
 	private @NotNull Set<String> barCodes;
 	private @NotBlank Set<String> productAddresses;
 	
