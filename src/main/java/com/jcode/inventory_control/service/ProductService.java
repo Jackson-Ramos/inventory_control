@@ -1,5 +1,6 @@
 package com.jcode.inventory_control.service;
 
+import com.jcode.inventory_control.entities.product.Category;
 import com.jcode.inventory_control.entities.product.Product;
 import com.jcode.inventory_control.entities.product.ProductRequestDTO;
 import com.jcode.inventory_control.repositories.AddressRepository;
@@ -36,7 +37,8 @@ public class ProductService {
         product.setPrice(data.getPrice());
         product.setImgUrl(data.getImgUrl());
         product.setBlocked(false);
-        product.getCategory(data.getCategory());
+        product.setCategory(data.getCategory());
 
+        return ResponseEntity.ok(productRepository.save(product));
     }
 }

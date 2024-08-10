@@ -26,13 +26,12 @@ public class ProductRequestDTO implements Serializable {
 	@Serial
 	private static final long serialVersionUID = 2560776881501777379L;
 
-	private @NotBlank String name;
-	private @NotBlank String description;
+	private @NotNull String name;
+	private @NotNull String description;
 	private @NotNull BigDecimal price;
 	private String imgUrl;
-	@Convert(converter = CategoryConverter.class)
-	private @NotBlank String category;
-	private @NotNull Set<String> barCodes;
-	private @NotBlank Set<String> productAddresses;
+	private @NotNull Category category;
+	private  Set<String> barCodes;
+	private @NotNull Set<String> productAddresses;
 	
 }
