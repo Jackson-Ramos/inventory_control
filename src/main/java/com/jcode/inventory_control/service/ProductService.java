@@ -10,6 +10,9 @@ import com.jcode.inventory_control.repositories.ProductAddressRepository;
 import com.jcode.inventory_control.repositories.ProductRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.*;
 
 @Service
 public class ProductService {
@@ -30,19 +33,44 @@ public class ProductService {
         this.productAddressRepository = productAddressRepository;
     }
 
+    @Transactional
     public ResponseEntity<Product> saveProduct(ProductRequestDTO data) {
 
-        Product product = new Product();
-        product.setName(data.getName());
-        product.setDescription(data.getDescription());
-        product.setPrice(data.getPrice());
-        product.setImgUrl(data.getImgUrl());
-        product.setBlocked(false);
-        product.setCategory(data.getCategory());
+        var address = addressRepository.findById(data.getAddressId());
 
-        if (data.getBarCodes().isEmpty()){
-            BarCode barCode = new BarCode();
+        if (address.isPresent()) {
+
+            Product product = new Product();
+
+            product.setName(data.getName());
+            product.setDescription(data.getDescription());
+            product.setPrice(data.getPrice());
+            product.setImgUrl(data.getImgUrl());
+            product.setBlocked(false);
+            product.setCategory(data.getCategory());
+            product.setBarCodes(
+                    data.getBarCodes() == null ?
+                            generateBarCode(product) :
+                            new HashSet<>(List.of(new BarCode(null, data.getBarCodes(), data.getMultipleBarcode(), product))));
+
+            product.setProductAddresses(address.get().getProductAddresses());
+            address.get().setProductAddresses(product.getProductAddresses());
+
+
+            return ResponseEntity.ok(productRepository.save(product));
         }
-        return ResponseEntity.ok(productRepository.save(product));
+        throw new IllegalArgumentException("Could not find address with id: " + data.getAddressId());
+    }
+
+    private Set<BarCode> generateBarCode(Product product) {
+
+        Set<BarCode> barCodes = new HashSet<>();
+
+        BarCode barCode = new BarCode();
+        barCode.setProduct(product);
+        barCode.setBarcode("7899970701566");
+        barCode.setQuantity(1L);
+        barCodes.add(barCode);
+        return barCodes;
     }
 }

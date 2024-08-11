@@ -34,7 +34,7 @@ public class RestExceptionHandler {
 	}
 	
 //	@ExceptionHandler(InvalidJwtAuthenticationException.class)
-//	public final ResponseEntity<ExceptionResponse> handleInvalidJwtAutentication(Exception exception, WebRequest webRequest) {
+//	public final ResponseEntity<ExceptionResponse> handleInvalidJwtAuthentication(Exception exception, WebRequest webRequest) {
 //		ExceptionResponse exceptionResponse = new ExceptionResponse(
 //				new Date(),
 //				exception.getMessage(),

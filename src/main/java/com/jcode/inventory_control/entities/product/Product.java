@@ -10,13 +10,13 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Set;
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
 @Getter
 @Setter
 @Entity()
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "products")
+@EqualsAndHashCode(exclude = "barCodes")
 public class Product implements Serializable {
 
     @Serial
