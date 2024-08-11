@@ -8,8 +8,8 @@
         <version>3.2.3</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.jack_dev</groupId>
-    <artifactId>estoque</artifactId>
+    <groupId>com.jcode_developer</groupId>
+    <artifactId>inventory_control</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>estoque</name>
     <description>Demo project for Spring Boot</description>

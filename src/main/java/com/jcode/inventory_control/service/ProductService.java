@@ -1,5 +1,6 @@
 package com.jcode.inventory_control.service;
 
+import com.jcode.inventory_control.entities.barcode.BarCode;
 import com.jcode.inventory_control.entities.product.Category;
 import com.jcode.inventory_control.entities.product.Product;
 import com.jcode.inventory_control.entities.product.ProductRequestDTO;
@@ -39,6 +40,9 @@ public class ProductService {
         product.setBlocked(false);
         product.setCategory(data.getCategory());
 
+        if (data.getBarCodes().isEmpty()){
+            BarCode barCode = new BarCode();
+        }
         return ResponseEntity.ok(productRepository.save(product));
     }
 }
