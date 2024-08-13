@@ -24,10 +24,12 @@ public class ProductRequestDTO implements Serializable {
     private @NotNull String name;
     private @NotNull String description;
     private @NotNull BigDecimal price;
+    private @NotNull Long quantity;
     private String imgUrl;
     private @NotNull Category category;
     private String barCodes;
     private @Positive Long multipleBarcode;
     private @NotNull Set<String> productAddresses;
+
 
 }

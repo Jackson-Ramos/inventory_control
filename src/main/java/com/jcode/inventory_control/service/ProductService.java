@@ -1,9 +1,12 @@
 package com.jcode.inventory_control.service;
 
+import com.jcode.inventory_control.entities.address.Address;
 import com.jcode.inventory_control.entities.barcode.BarCode;
 import com.jcode.inventory_control.entities.product.Category;
 import com.jcode.inventory_control.entities.product.Product;
 import com.jcode.inventory_control.entities.product.ProductRequestDTO;
+import com.jcode.inventory_control.entities.productaddress.ProductAddress;
+import com.jcode.inventory_control.entities.productaddress.ProductAddressId;
 import com.jcode.inventory_control.repositories.AddressRepository;
 import com.jcode.inventory_control.repositories.BarCodeRepository;
 import com.jcode.inventory_control.repositories.ProductAddressRepository;
@@ -36,9 +39,10 @@ public class ProductService {
     @Transactional
     public ResponseEntity<Product> saveProduct(ProductRequestDTO data) {
 
-        var address = addressRepository.findById(data.getAddressId());
+        var addressOptional = addressRepository.findById(data.getAddressId());
 
-        if (address.isPresent()) {
+        if (addressOptional.isPresent()) {
+            Address address = addressOptional.get();
 
             Product product = new Product();
 
@@ -48,13 +52,25 @@ public class ProductService {
             product.setImgUrl(data.getImgUrl());
             product.setBlocked(false);
             product.setCategory(data.getCategory());
-            product.setBarCodes(
-                    data.getBarCodes() == null ?
-                            generateBarCode(product) :
-                            new HashSet<>(List.of(new BarCode(null, data.getBarCodes(), data.getMultipleBarcode(), product))));
 
-            product.setProductAddresses(address.get().getProductAddresses());
-            address.get().setProductAddresses(product.getProductAddresses());
+            Set<BarCode> barCodes = data.getBarCodes() == null ?
+                    generateBarCode(product) :
+                    new HashSet<>(List.of(new BarCode(null, data.getBarCodes(), data.getMultipleBarcode(), product)));
+
+            product.setBarCodes(barCodes);
+
+            Set<ProductAddress> productAddresses = new HashSet<>();
+
+            ProductAddress productAddress = new ProductAddress(
+                    new ProductAddressId( product.getCode(), address.getCode()),
+                    product,
+                    address,
+                    data.getQuantity()
+            );
+            productAddresses.add(productAddress);
+
+            product.setProductAddresses(productAddresses);
+            productAddresses.forEach(pa -> pa.getAddress().getProductAddresses().add(pa));
 
 
             return ResponseEntity.ok(productRepository.save(product));
