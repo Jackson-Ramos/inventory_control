@@ -11,6 +11,7 @@ import com.jcode.inventory_control.repositories.AddressRepository;
 import com.jcode.inventory_control.repositories.BarCodeRepository;
 import com.jcode.inventory_control.repositories.ProductAddressRepository;
 import com.jcode.inventory_control.repositories.ProductRepository;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,24 +21,18 @@ import java.util.*;
 @Service
 public class ProductService {
 
-    private final BarCodeRepository barCodeRepository;
     private final ProductRepository productRepository;
     private final AddressRepository addressRepository;
-    private final ProductAddressRepository productAddressRepository;
 
     public ProductService(
-            BarCodeRepository barCodeRepository,
             ProductRepository productRepository,
-            AddressRepository addressRepository,
-            ProductAddressRepository productAddressRepository) {
-        this.barCodeRepository = barCodeRepository;
+            AddressRepository addressRepository) {
         this.productRepository = productRepository;
         this.addressRepository = addressRepository;
-        this.productAddressRepository = productAddressRepository;
     }
 
     @Transactional
-    public ResponseEntity<Product> saveProduct(ProductRequestDTO data) {
+    public ResponseEntity<Void> saveProduct(ProductRequestDTO data) {
 
         var addressOptional = addressRepository.findById(data.getAddressId());
 
@@ -72,8 +67,8 @@ public class ProductService {
             product.setProductAddresses(productAddresses);
             productAddresses.forEach(pa -> pa.getAddress().getProductAddresses().add(pa));
 
-
-            return ResponseEntity.ok(productRepository.save(product));
+            productRepository.save(product);
+            return ResponseEntity.status(HttpStatus.CREATED).build();
         }
         throw new IllegalArgumentException("Could not find address with id: " + data.getAddressId());
     }
