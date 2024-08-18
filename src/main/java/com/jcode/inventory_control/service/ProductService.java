@@ -2,21 +2,20 @@ package com.jcode.inventory_control.service;
 
 import com.jcode.inventory_control.entities.address.Address;
 import com.jcode.inventory_control.entities.barcode.BarCode;
-import com.jcode.inventory_control.entities.product.Category;
 import com.jcode.inventory_control.entities.product.Product;
 import com.jcode.inventory_control.entities.product.ProductRequestDTO;
 import com.jcode.inventory_control.entities.productaddress.ProductAddress;
 import com.jcode.inventory_control.entities.productaddress.ProductAddressId;
 import com.jcode.inventory_control.repositories.AddressRepository;
-import com.jcode.inventory_control.repositories.BarCodeRepository;
-import com.jcode.inventory_control.repositories.ProductAddressRepository;
 import com.jcode.inventory_control.repositories.ProductRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Service
 public class ProductService {
