@@ -4,8 +4,10 @@ import com.jcode.inventory_control.entities.address.Address;
 import com.jcode.inventory_control.entities.barcode.BarCode;
 import com.jcode.inventory_control.entities.product.Product;
 import com.jcode.inventory_control.entities.product.ProductRequestDTO;
+import com.jcode.inventory_control.entities.product.ProductResponseDTO;
 import com.jcode.inventory_control.entities.productaddress.ProductAddress;
 import com.jcode.inventory_control.entities.productaddress.ProductAddressId;
+import com.jcode.inventory_control.mapper.Mapper;
 import com.jcode.inventory_control.repositories.AddressRepository;
 import com.jcode.inventory_control.repositories.ProductRepository;
 import org.springframework.http.HttpStatus;
@@ -31,7 +33,7 @@ public class ProductService {
     }
 
     @Transactional
-    public ResponseEntity<Void> saveProduct(ProductRequestDTO data) {
+    public ResponseEntity<Void> save(ProductRequestDTO data) {
 
         var addressOptional = addressRepository.findById(data.getAddressId());
 
@@ -70,6 +72,14 @@ public class ProductService {
             return ResponseEntity.status(HttpStatus.CREATED).build();
         }
         throw new IllegalArgumentException("Could not find address with id: " + data.getAddressId());
+    }
+
+    public ResponseEntity<Set<ProductResponseDTO>> findAll() {
+        Set<Product> products = new HashSet<>(productRepository.findAll());
+        if (products.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(Mapper.parseListObjects(products, ProductResponseDTO.class));
     }
 
     private Set<BarCode> generateBarCode(Product product) {
