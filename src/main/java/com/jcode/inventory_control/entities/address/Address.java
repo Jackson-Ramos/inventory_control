@@ -1,6 +1,5 @@
 package com.jcode.inventory_control.entities.address;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.jcode.inventory_control.entities.productaddress.ProductAddress;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -16,7 +15,7 @@ import java.util.Set;
 @NoArgsConstructor
 @Entity
 @Table(name = "address", uniqueConstraints = {
-        @UniqueConstraint(columnNames = {"stock", "deposit", "building", "road", "level", "apartment"}) // TODO: NÃO FUNCIONA
+        @UniqueConstraint(columnNames = {"stock", "deposit", "building", "road", "level", "apartment"}) // TODO: IRRELEVANT
 })
 public class Address implements Serializable {
 
