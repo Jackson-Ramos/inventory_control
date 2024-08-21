@@ -1,7 +1,6 @@
 package com.jcode.inventory_control.entities.product;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.jcode.inventory_control.entities.address.AddressResponseDTO;
 import com.jcode.inventory_control.entities.barcode.BarCodeResponse;
 import com.jcode.inventory_control.entities.productaddress.ProductAddress;
 import jakarta.persistence.Convert;
@@ -27,10 +26,13 @@ public class ProductResponseDTO implements Serializable {
     private String description;
     private BigDecimal price;
     private String imgUrl;
+
     @Convert(converter = CategoryConverter.class)
     private Category category;
+
     private Set<BarCodeResponse> barCodes;
-    @JsonIgnoreProperties({"product"})
-    private Set<ProductAddress> addresses;
+
+    @JsonIgnoreProperties({"product", "address"})
+    private Set<ProductAddress> productAddresses;
 
 }
