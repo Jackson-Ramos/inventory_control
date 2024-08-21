@@ -2,6 +2,7 @@ package com.jcode.inventory_control.controller;
 
 import com.jcode.inventory_control.entities.address.Address;
 import com.jcode.inventory_control.entities.address.AddressRequestDTO;
+import com.jcode.inventory_control.entities.address.AddressResponseDTO;
 import com.jcode.inventory_control.service.AddressService;
 import jakarta.validation.Valid;
 import org.springframework.http.MediaType;
@@ -28,7 +29,7 @@ public class AddressController {
     }
 
     @GetMapping
-    public ResponseEntity<Set<Address>> getAllAddresses() {
+    public ResponseEntity<Set<AddressResponseDTO>> getAllAddresses() {
         return addressService.findAll();
     }
 

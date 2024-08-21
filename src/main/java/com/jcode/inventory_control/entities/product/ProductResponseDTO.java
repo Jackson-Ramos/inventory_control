@@ -1,7 +1,9 @@
 package com.jcode.inventory_control.entities.product;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.jcode.inventory_control.entities.address.AddressResponseDTO;
 import com.jcode.inventory_control.entities.barcode.BarCodeResponse;
+import com.jcode.inventory_control.entities.productaddress.ProductAddress;
 import jakarta.persistence.Convert;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -28,7 +30,7 @@ public class ProductResponseDTO implements Serializable {
     @Convert(converter = CategoryConverter.class)
     private Category category;
     private Set<BarCodeResponse> barCodes;
-    //    @JsonIgnoreProperties({"product"})
-    private Set<AddressResponseDTO> addresses;
+    @JsonIgnoreProperties({"product"})
+    private Set<ProductAddress> addresses;
 
 }

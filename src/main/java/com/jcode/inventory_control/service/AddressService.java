@@ -2,6 +2,8 @@ package com.jcode.inventory_control.service;
 
 import com.jcode.inventory_control.entities.address.Address;
 import com.jcode.inventory_control.entities.address.AddressRequestDTO;
+import com.jcode.inventory_control.entities.address.AddressResponseDTO;
+import com.jcode.inventory_control.mapper.Mapper;
 import com.jcode.inventory_control.repositories.AddressRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,8 +23,9 @@ public class AddressService {
         this.addressRepository = addressRepository;
     }
 
-    public ResponseEntity<Set<Address>> findAll() {
-        return ResponseEntity.ok(new HashSet<>(addressRepository.findAll()));
+    public ResponseEntity<Set<AddressResponseDTO>> findAll() {
+        var addresses = Mapper.parseListObjects(new HashSet<>(addressRepository.findAll()), AddressResponseDTO.class);
+        return ResponseEntity.ok(addresses);
     }
 
     public ResponseEntity<Address> findById(Long id) {

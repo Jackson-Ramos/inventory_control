@@ -1,5 +1,6 @@
 package com.jcode.inventory_control.entities.address;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.jcode.inventory_control.entities.productaddress.ProductAddress;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -31,6 +32,7 @@ public class Address implements Serializable {
     private Long road;
     private Long level;
     private Long apartment;
+
 
     @OneToMany(mappedBy = "address", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<ProductAddress> productAddresses;
