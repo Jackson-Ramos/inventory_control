@@ -58,7 +58,7 @@ public class ProductService {
             Set<ProductAddress> productAddresses = new HashSet<>();
 
             ProductAddress productAddress = new ProductAddress(
-                    new ProductAddressId( product.getCode(), address.getCode()),
+                    new ProductAddressId(product.getCode(), address.getCode()),
                     product,
                     address,
                     data.getQuantity()
