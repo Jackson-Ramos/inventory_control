@@ -33,7 +33,7 @@ public class AddressService {
         if (address.isPresent()) {
             return ResponseEntity.ok(address.get());
         }
-        throw new IllegalArgumentException("Address already exists");
+        throw new IllegalArgumentException("The address does not exist");
     }
 
     @Transactional
