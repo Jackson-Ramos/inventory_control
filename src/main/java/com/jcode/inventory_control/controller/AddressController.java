@@ -1,6 +1,5 @@
 package com.jcode.inventory_control.controller;
 
-import com.jcode.inventory_control.entities.address.Address;
 import com.jcode.inventory_control.entities.address.AddressRequestDTO;
 import com.jcode.inventory_control.entities.address.AddressResponseDTO;
 import com.jcode.inventory_control.service.AddressService;
@@ -34,7 +33,7 @@ public class AddressController {
     }
 
     @GetMapping("/{code}")
-    public ResponseEntity<Address> getAddressById(@PathVariable Long code) {
+    public ResponseEntity<AddressResponseDTO> getAddressById(@PathVariable Long code) {
         return addressService.findById(code);
     }
 
@@ -44,7 +43,7 @@ public class AddressController {
     }
 
     @PutMapping("/{code}")
-    public ResponseEntity<Void> updateAddress(@PathVariable Long code,@RequestBody @Valid AddressRequestDTO data) {
-        return addressService.update(code,data);
+    public ResponseEntity<Void> updateAddress(@PathVariable Long code, @RequestBody @Valid AddressRequestDTO data) {
+        return addressService.update(code, data);
     }
 }

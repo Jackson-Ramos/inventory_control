@@ -28,10 +28,10 @@ public class AddressService {
         return ResponseEntity.ok(addresses);
     }
 
-    public ResponseEntity<Address> findById(Long id) {
+    public ResponseEntity<AddressResponseDTO> findById(Long id) {
         Optional<Address> address = addressRepository.findById(id);
         if (address.isPresent()) {
-            return ResponseEntity.ok(address.get());
+            return ResponseEntity.ok(Mapper.parseObject(address.get(), AddressResponseDTO.class));
         }
         throw new IllegalArgumentException("The address does not exist");
     }
