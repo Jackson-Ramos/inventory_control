@@ -7,6 +7,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
+import java.util.Set;
 
 @Repository
 public interface AddressRepository extends JpaRepository<Address, Long> {
@@ -21,5 +22,7 @@ public interface AddressRepository extends JpaRepository<Address, Long> {
             @Param("apartment") Long apartment
     );
 
+    @Query("SELECT a.code, a.stock, a.deposit, a.building, a.road, a.level, a.apartment, p.product FROM Address a JOIN a.productAddresses p")
+    Set<Address> findAllAddressesWithProducts();
 }
 

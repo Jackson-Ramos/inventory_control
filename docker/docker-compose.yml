@@ -1,5 +1,15 @@
 services:
-  postgres-inventory_control:
+
+#  application
+#  api:
+#    image: inventory_control_container
+#    ports:
+#      - "8080:8080"
+#    depends_on:
+#      - postgres_inventory_control
+
+# Database
+  postgres_inventory_control:
     image: postgres:latest
     container_name: postgres-container-inventory
     environment:
@@ -7,7 +17,7 @@ services:
       POSTGRES_PASSWORD: root
       POSTGRES_DB: inventory_database
     ports:
-      - "5432:5432"
+      - "5433:5433"
     volumes:
       - postgres-data-inventory:/var/lib/postgresql/data
 

@@ -10,7 +10,7 @@ spring:
   datasource:
     driver-class-name: org.postgresql.Driver
     url: jdbc:postgresql://localhost:5432/inventory_database
-    username: admin
+    username: postgres
     password: root
 
   # Configuração JPA

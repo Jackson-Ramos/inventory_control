@@ -1,6 +1,8 @@
 package com.jcode.inventory_control.entities.address;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.jcode.inventory_control.entities.product.Product;
 import com.jcode.inventory_control.entities.productaddress.ProductAddress;
 import lombok.*;
 
@@ -28,4 +30,7 @@ public class AddressResponseDTO implements Serializable {
 
     @JsonIgnoreProperties({"address", "product"})
     private Set<ProductAddress> productAddresses;
+
+//    @JsonIgnoreProperties("barCodes")
+//    private Set<Product> products;
 }
