@@ -39,8 +39,14 @@ public class AddressService {
     @Transactional
     public ResponseEntity<Void> save(AddressRequestDTO data) {
 
-        Optional<Address> existingAddress =
-                addressRepository.findByDuplicateAddress(data.getStock(), data.getDeposit(), data.getBuilding(), data.getRoad(), data.getLevel(), data.getApartment());
+        Optional<Address> existingAddress = addressRepository.findByDuplicateAddress(
+                data.getStock(),
+                data.getDeposit(),
+                data.getBuilding(),
+                data.getRoad(),
+                data.getLevel(),
+                data.getApartment()
+        );
 
         if (existingAddress.isPresent()) {
             throw new IllegalArgumentException("Address already exists");
@@ -94,35 +100,4 @@ public class AddressService {
         }
         return ResponseEntity.notFound().build();
     }
-
-    /*
-
-    public ResponseEntity<Set<AddressResponseDTO>> findAll() {
-        Set<AddressResponseDTO> addressResponseDTOS = new HashSet<>();
-        var addresses = new HashSet<>(addressRepository.findAll());
-
-        for (var address : addresses) {
-            // Criar AddressResponseDTO
-            AddressResponseDTO responseDTO = new AddressResponseDTO(
-                    address.getCode(),
-                    address.getStock(),
-                    address.getDeposit(),
-                    address.getBuilding(),
-                    address.getRoad(),
-                    address.getLevel(),
-                    address.getApartment(),
-                    address.getProductAddresses().stream()
-                            .map(productAddress -> productAddress.getProduct())
-                            .collect(Collectors.toSet()) // Coletar os produtos
-            );
-
-            // Adicionar o responseDTO na coleção
-            addressResponseDTOS.add(responseDTO);
-        }
-
-        // Retornar o conjunto de AddressResponseDTO
-        return ResponseEntity.ok(addressResponseDTOS);
-    }
-
-     */
 }
